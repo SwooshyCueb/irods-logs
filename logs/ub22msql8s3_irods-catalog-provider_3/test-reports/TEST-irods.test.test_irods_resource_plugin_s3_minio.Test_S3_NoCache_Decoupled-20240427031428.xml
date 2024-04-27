@@ -1,0 +1,942 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="irods.test.test_irods_resource_plugin_s3_minio.Test_S3_NoCache_Decoupled-20240427031428" tests="1" time="12.341" failures="1" errors="0">
+	<testcase classname="irods.test.test_irods_resource_plugin_s3_minio.Test_S3_NoCache_Decoupled" name="test_irepl_over_existing_second_replica__ticket_1705" time="12.341">
+		<failure type="AssertionError" message=""><![CDATA[Traceback (most recent call last):
+  File "/var/lib/irods/scripts/irods/test/resource_suite_s3_nocache.py", line 879, in test_irepl_over_existing_second_replica__ticket_1705
+    self.admin.assert_icommand(['irepl', filename], 'STDERR', 'SYS_NOT_ALLOWED') # replicate overtop default resource
+  File "/var/lib/irods/scripts/irods/test/session.py", line 164, in assert_icommand
+    return assert_command(*args, **kwargs)
+  File "/var/lib/irods/scripts/irods/test/command.py", line 77, in assert_command
+    return _assert_helper(*args, should_fail=False, **kwargs)
+  File "/var/lib/irods/scripts/irods/test/command.py", line 105, in _assert_helper
+    assert result
+AssertionError
+
+Stdout:
+ --- IrodsSession: icommand executed by [rods#tempZone] [iinit] --- 
+Assert Command: iinit
+Expecting STDOUT_SINGLELINE: ['']
+  stdout:
+    | WARNING: Error 25 disabling echo mode. Password will be displayed in plaintext.
+    | Enter your current iRODS password:
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iinit] --- 
+Assert Command: iinit
+Expecting STDOUT_SINGLELINE: ['']
+  stdout:
+    | WARNING: Error 25 disabling echo mode. Password will be displayed in plaintext.
+    | Enter your current iRODS password:
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin mkuser otherrods rodsadmin] --- 
+Assert Command: iadmin mkuser otherrods rodsadmin
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin moduser otherrods password rods] --- 
+Assert Command: iadmin moduser otherrods password rods
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [iinit] --- 
+Assert Command: iinit
+Expecting STDOUT_SINGLELINE: ['']
+  stdout:
+    | WARNING: Error 25 disabling echo mode. Password will be displayed in plaintext.
+    | Enter your current iRODS password:
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [imkdir /tempZone/home/otherrods/2024-04-27Z03:14:28--irods-testing-2ntfhj6s] --- 
+Assert Command: imkdir /tempZone/home/otherrods/2024-04-27Z03:14:28--irods-testing-2ntfhj6s
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [icd /tempZone/home/otherrods/2024-04-27Z03:14:28--irods-testing-2ntfhj6s] --- 
+Assert Command: icd /tempZone/home/otherrods/2024-04-27Z03:14:28--irods-testing-2ntfhj6s
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iinit] --- 
+Assert Command: iinit
+Expecting STDOUT_SINGLELINE: ['']
+  stdout:
+    | WARNING: Error 25 disabling echo mode. Password will be displayed in plaintext.
+    | Enter your current iRODS password:
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin mkuser alice rodsuser] --- 
+Assert Command: iadmin mkuser alice rodsuser
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin moduser alice password apass] --- 
+Assert Command: iadmin moduser alice password apass
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [alice#tempZone] [iinit] --- 
+Assert Command: iinit
+Expecting STDOUT_SINGLELINE: ['']
+  stdout:
+    | WARNING: Error 25 disabling echo mode. Password will be displayed in plaintext.
+    | Enter your current iRODS password:
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [alice#tempZone] [imkdir /tempZone/home/alice/2024-04-27Z03:14:30--irods-testing-5z4zmqzf] --- 
+Assert Command: imkdir /tempZone/home/alice/2024-04-27Z03:14:30--irods-testing-5z4zmqzf
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [alice#tempZone] [icd /tempZone/home/alice/2024-04-27Z03:14:30--irods-testing-5z4zmqzf] --- 
+Assert Command: icd /tempZone/home/alice/2024-04-27Z03:14:30--irods-testing-5z4zmqzf
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iinit] --- 
+Assert Command: iinit
+Expecting STDOUT_SINGLELINE: ['']
+  stdout:
+    | WARNING: Error 25 disabling echo mode. Password will be displayed in plaintext.
+    | Enter your current iRODS password:
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin mkuser bobby rodsuser] --- 
+Assert Command: iadmin mkuser bobby rodsuser
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin moduser bobby password bpass] --- 
+Assert Command: iadmin moduser bobby password bpass
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [bobby#tempZone] [iinit] --- 
+Assert Command: iinit
+Expecting STDOUT_SINGLELINE: ['']
+  stdout:
+    | WARNING: Error 25 disabling echo mode. Password will be displayed in plaintext.
+    | Enter your current iRODS password:
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [bobby#tempZone] [imkdir /tempZone/home/bobby/2024-04-27Z03:14:31--irods-testing-6fvwpgzz] --- 
+Assert Command: imkdir /tempZone/home/bobby/2024-04-27Z03:14:31--irods-testing-6fvwpgzz
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [bobby#tempZone] [icd /tempZone/home/bobby/2024-04-27Z03:14:31--irods-testing-6fvwpgzz] --- 
+Assert Command: icd /tempZone/home/bobby/2024-04-27Z03:14:31--irods-testing-6fvwpgzz
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+run_resource_setup - BEGIN
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [iadmin modresc demoResc name origResc] --- 
+Assert Command: iadmin modresc demoResc name origResc
+Expecting STDOUT_SINGLELINE: ['rename']
+  stdout:
+    | If you modify a resource name, you and other users will need to
+    | change your irods_environment.json files to use it, you may need to update
+    | server_config.json and, if rules use the resource name, you'll need to
+    | update the core rules (core.re).  This command will update various
+    | tables with the new name.
+    | Do you really want to modify the resource name? (enter y or yes to do so):OK, performing the resource rename
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [iadmin mkresc demoResc s3 68622b26cb12:/irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/demoResc S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/minio.keypair;S3_REGIONNAME=us-east-1;S3_RETRY_COUNT=2;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=decoupled;HOST_MODE=cacheless_attached;S3_ENABLE_MD5=1;S3_ENABLE_MPU=1;S3_CACHE_DIR=/var/lib/irods] --- 
+Assert Command: iadmin mkresc demoResc s3 68622b26cb12:/irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/demoResc S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/minio.keypair;S3_REGIONNAME=us-east-1;S3_RETRY_COUNT=2;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=decoupled;HOST_MODE=cacheless_attached;S3_ENABLE_MD5=1;S3_ENABLE_MPU=1;S3_CACHE_DIR=/var/lib/irods
+Expecting STDOUT_SINGLELINE: ['s3']
+  stdout:
+    | Creating resource:
+    | Name:		"demoResc"
+    | Type:		"s3"
+    | Host:		"68622b26cb12"
+    | Path:		"/irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/demoResc"
+    | Context:	"S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/minio.keypair;S3_REGIONNAME=us-east-1;S3_RETRY_COUNT=2;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=decoupled;HOST_MODE=cacheless_attached;S3_ENABLE_MD5=1;S3_ENABLE_MPU=1;S3_CACHE_DIR=/var/lib/irods"
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [iadmin mkresc TestResc s3 68622b26cb12:/irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/TestResc S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/minio.keypair;S3_REGIONNAME=us-east-1;S3_RETRY_COUNT=2;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=decoupled;HOST_MODE=cacheless_attached;S3_ENABLE_MD5=1;S3_ENABLE_MPU=1;S3_CACHE_DIR=/var/lib/irods] --- 
+Assert Command: iadmin mkresc TestResc s3 68622b26cb12:/irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/TestResc S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/minio.keypair;S3_REGIONNAME=us-east-1;S3_RETRY_COUNT=2;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=decoupled;HOST_MODE=cacheless_attached;S3_ENABLE_MD5=1;S3_ENABLE_MPU=1;S3_CACHE_DIR=/var/lib/irods
+Expecting STDOUT_SINGLELINE: ['s3']
+  stdout:
+    | Creating resource:
+    | Name:		"TestResc"
+    | Type:		"s3"
+    | Host:		"68622b26cb12"
+    | Path:		"/irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/TestResc"
+    | Context:	"S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/minio.keypair;S3_REGIONNAME=us-east-1;S3_RETRY_COUNT=2;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=decoupled;HOST_MODE=cacheless_attached;S3_ENABLE_MD5=1;S3_ENABLE_MPU=1;S3_CACHE_DIR=/var/lib/irods"
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [iadmin mkresc AnotherResc s3 68622b26cb12:/irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/AnotherResc S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/minio.keypair;S3_REGIONNAME=us-east-1;S3_RETRY_COUNT=2;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=decoupled;HOST_MODE=cacheless_attached;S3_ENABLE_MD5=1;S3_ENABLE_MPU=1;S3_CACHE_DIR=/var/lib/irods] --- 
+Assert Command: iadmin mkresc AnotherResc s3 68622b26cb12:/irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/AnotherResc S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/minio.keypair;S3_REGIONNAME=us-east-1;S3_RETRY_COUNT=2;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=decoupled;HOST_MODE=cacheless_attached;S3_ENABLE_MD5=1;S3_ENABLE_MPU=1;S3_CACHE_DIR=/var/lib/irods
+Expecting STDOUT_SINGLELINE: ['s3']
+  stdout:
+    | Creating resource:
+    | Name:		"AnotherResc"
+    | Type:		"s3"
+    | Host:		"68622b26cb12"
+    | Path:		"/irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/AnotherResc"
+    | Context:	"S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/minio.keypair;S3_REGIONNAME=us-east-1;S3_RETRY_COUNT=2;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=decoupled;HOST_MODE=cacheless_attached;S3_ENABLE_MD5=1;S3_ENABLE_MPU=1;S3_CACHE_DIR=/var/lib/irods"
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [imkdir testdir] --- 
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [iput testfile.txt] --- 
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [icp testfile.txt ../../public/] --- 
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [ichmod read alice ../../public/testfile.txt] --- 
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [ichmod write bobby ../../public/testfile.txt] --- 
+run_resource_setup - END
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [ils -L secondreplicatest.txt] --- 
+Assert Command: ils -L secondreplicatest.txt
+Expecting STDERR_SINGLELINE: ['does not exist']
+  stdout:
+    | 
+  stderr:
+    | remote addresses: 10.201.43.21 ERROR: lsUtil: srcPath /tempZone/home/otherrods/2024-04-27Z03:14:28--irods-testing-2ntfhj6s/secondreplicatest.txt does not exist or user lacks access permission
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [iput -R TestResc secondreplicatest.txt] --- 
+Assert Command: iput -R TestResc secondreplicatest.txt
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [ils -L secondreplicatest.txt] --- 
+Assert Command: ils -L secondreplicatest.txt
+Expecting STDOUT_SINGLELINE: ['secondreplicatest.txt']
+  stdout:
+    |   otherrods         0 TestResc           50 2024-04-27.03:14 & secondreplicatest.txt
+    |         generic    /irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/33001/secondreplicatest.txt
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [irepl secondreplicatest.txt] --- 
+Assert Command: irepl secondreplicatest.txt
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [ils -L secondreplicatest.txt] --- 
+Assert Command: ils -L secondreplicatest.txt
+Expecting STDOUT_SINGLELINE: ['secondreplicatest.txt']
+  stdout:
+    |   otherrods         0 TestResc           50 2024-04-27.03:14 & secondreplicatest.txt
+    |         generic    /irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/33001/secondreplicatest.txt
+    |   otherrods         1 demoResc           50 2024-04-27.03:14 & secondreplicatest.txt
+    |         generic    /irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/33001/secondreplicatest.txt
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [irepl secondreplicatest.txt] --- 
+Assert Command: irepl secondreplicatest.txt
+Expecting STDERR: ['SYS_NOT_ALLOWED']
+  stdout:
+    | 
+  stderr:
+    | 
+Output not found
+
+FAILED TESTING ASSERTION
+
+
+run_resource_teardown - BEGIN
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [icd] --- 
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [irm testfile.txt ../public/testfile.txt] --- 
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [irm -rf ../../bundle] --- 
+ --- IrodsSession: icommand executed by [rods#tempZone] [iinit] --- 
+Assert Command: iinit
+Expecting STDOUT_SINGLELINE: ['']
+  stdout:
+    | WARNING: Error 25 disabling echo mode. Password will be displayed in plaintext.
+    | Enter your current iRODS password:
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [icd] --- 
+Assert Command: icd
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [irm -rf /tempZone/home/otherrods/2024-04-27Z03:14:28--irods-testing-2ntfhj6s] --- 
+Assert Command: irm -rf /tempZone/home/otherrods/2024-04-27Z03:14:28--irods-testing-2ntfhj6s
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [irmtrash] --- 
+Assert Command: irmtrash
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin rmuser otherrods] --- 
+Assert Command: iadmin rmuser otherrods
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [alice#tempZone] [icd] --- 
+Assert Command: icd
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [alice#tempZone] [irm -rf /tempZone/home/alice/2024-04-27Z03:14:30--irods-testing-5z4zmqzf] --- 
+Assert Command: irm -rf /tempZone/home/alice/2024-04-27Z03:14:30--irods-testing-5z4zmqzf
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [alice#tempZone] [irmtrash] --- 
+Assert Command: irmtrash
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin rmuser alice] --- 
+Assert Command: iadmin rmuser alice
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [bobby#tempZone] [icd] --- 
+Assert Command: icd
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [bobby#tempZone] [irm -rf /tempZone/home/bobby/2024-04-27Z03:14:31--irods-testing-6fvwpgzz] --- 
+Assert Command: irm -rf /tempZone/home/bobby/2024-04-27Z03:14:31--irods-testing-6fvwpgzz
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [bobby#tempZone] [irmtrash] --- 
+Assert Command: irmtrash
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin rmuser bobby] --- 
+Assert Command: iadmin rmuser bobby
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iinit] --- 
+Assert Command: iinit
+Expecting STDOUT_SINGLELINE: ['']
+  stdout:
+    | WARNING: Error 25 disabling echo mode. Password will be displayed in plaintext.
+    | Enter your current iRODS password:
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [irmtrash -M] --- 
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin rmresc TestResc] --- 
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin rmresc AnotherResc] --- 
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin rmresc demoResc] --- 
+Assert Command: iadmin rmresc demoResc
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin modresc origResc name demoResc] --- 
+Assert Command: iadmin modresc origResc name demoResc
+Expecting STDOUT_SINGLELINE: ['rename']
+  stdout:
+    | If you modify a resource name, you and other users will need to
+    | change your irods_environment.json files to use it, you may need to update
+    | server_config.json and, if rules use the resource name, you'll need to
+    | update the core rules (core.re).  This command will update various
+    | tables with the new name.
+    | Do you really want to modify the resource name? (enter y or yes to do so):OK, performing the resource rename
+  stderr:
+    | 
+Output found
+
+run_resource_teardown - END
+]]></failure>
+	</testcase>
+	<system-out><![CDATA[ --- IrodsSession: icommand executed by [rods#tempZone] [iinit] --- 
+Assert Command: iinit
+Expecting STDOUT_SINGLELINE: ['']
+  stdout:
+    | WARNING: Error 25 disabling echo mode. Password will be displayed in plaintext.
+    | Enter your current iRODS password:
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iinit] --- 
+Assert Command: iinit
+Expecting STDOUT_SINGLELINE: ['']
+  stdout:
+    | WARNING: Error 25 disabling echo mode. Password will be displayed in plaintext.
+    | Enter your current iRODS password:
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin mkuser otherrods rodsadmin] --- 
+Assert Command: iadmin mkuser otherrods rodsadmin
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin moduser otherrods password rods] --- 
+Assert Command: iadmin moduser otherrods password rods
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [iinit] --- 
+Assert Command: iinit
+Expecting STDOUT_SINGLELINE: ['']
+  stdout:
+    | WARNING: Error 25 disabling echo mode. Password will be displayed in plaintext.
+    | Enter your current iRODS password:
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [imkdir /tempZone/home/otherrods/2024-04-27Z03:14:28--irods-testing-2ntfhj6s] --- 
+Assert Command: imkdir /tempZone/home/otherrods/2024-04-27Z03:14:28--irods-testing-2ntfhj6s
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [icd /tempZone/home/otherrods/2024-04-27Z03:14:28--irods-testing-2ntfhj6s] --- 
+Assert Command: icd /tempZone/home/otherrods/2024-04-27Z03:14:28--irods-testing-2ntfhj6s
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iinit] --- 
+Assert Command: iinit
+Expecting STDOUT_SINGLELINE: ['']
+  stdout:
+    | WARNING: Error 25 disabling echo mode. Password will be displayed in plaintext.
+    | Enter your current iRODS password:
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin mkuser alice rodsuser] --- 
+Assert Command: iadmin mkuser alice rodsuser
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin moduser alice password apass] --- 
+Assert Command: iadmin moduser alice password apass
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [alice#tempZone] [iinit] --- 
+Assert Command: iinit
+Expecting STDOUT_SINGLELINE: ['']
+  stdout:
+    | WARNING: Error 25 disabling echo mode. Password will be displayed in plaintext.
+    | Enter your current iRODS password:
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [alice#tempZone] [imkdir /tempZone/home/alice/2024-04-27Z03:14:30--irods-testing-5z4zmqzf] --- 
+Assert Command: imkdir /tempZone/home/alice/2024-04-27Z03:14:30--irods-testing-5z4zmqzf
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [alice#tempZone] [icd /tempZone/home/alice/2024-04-27Z03:14:30--irods-testing-5z4zmqzf] --- 
+Assert Command: icd /tempZone/home/alice/2024-04-27Z03:14:30--irods-testing-5z4zmqzf
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iinit] --- 
+Assert Command: iinit
+Expecting STDOUT_SINGLELINE: ['']
+  stdout:
+    | WARNING: Error 25 disabling echo mode. Password will be displayed in plaintext.
+    | Enter your current iRODS password:
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin mkuser bobby rodsuser] --- 
+Assert Command: iadmin mkuser bobby rodsuser
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin moduser bobby password bpass] --- 
+Assert Command: iadmin moduser bobby password bpass
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [bobby#tempZone] [iinit] --- 
+Assert Command: iinit
+Expecting STDOUT_SINGLELINE: ['']
+  stdout:
+    | WARNING: Error 25 disabling echo mode. Password will be displayed in plaintext.
+    | Enter your current iRODS password:
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [bobby#tempZone] [imkdir /tempZone/home/bobby/2024-04-27Z03:14:31--irods-testing-6fvwpgzz] --- 
+Assert Command: imkdir /tempZone/home/bobby/2024-04-27Z03:14:31--irods-testing-6fvwpgzz
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [bobby#tempZone] [icd /tempZone/home/bobby/2024-04-27Z03:14:31--irods-testing-6fvwpgzz] --- 
+Assert Command: icd /tempZone/home/bobby/2024-04-27Z03:14:31--irods-testing-6fvwpgzz
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+run_resource_setup - BEGIN
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [iadmin modresc demoResc name origResc] --- 
+Assert Command: iadmin modresc demoResc name origResc
+Expecting STDOUT_SINGLELINE: ['rename']
+  stdout:
+    | If you modify a resource name, you and other users will need to
+    | change your irods_environment.json files to use it, you may need to update
+    | server_config.json and, if rules use the resource name, you'll need to
+    | update the core rules (core.re).  This command will update various
+    | tables with the new name.
+    | Do you really want to modify the resource name? (enter y or yes to do so):OK, performing the resource rename
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [iadmin mkresc demoResc s3 68622b26cb12:/irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/demoResc S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/minio.keypair;S3_REGIONNAME=us-east-1;S3_RETRY_COUNT=2;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=decoupled;HOST_MODE=cacheless_attached;S3_ENABLE_MD5=1;S3_ENABLE_MPU=1;S3_CACHE_DIR=/var/lib/irods] --- 
+Assert Command: iadmin mkresc demoResc s3 68622b26cb12:/irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/demoResc S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/minio.keypair;S3_REGIONNAME=us-east-1;S3_RETRY_COUNT=2;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=decoupled;HOST_MODE=cacheless_attached;S3_ENABLE_MD5=1;S3_ENABLE_MPU=1;S3_CACHE_DIR=/var/lib/irods
+Expecting STDOUT_SINGLELINE: ['s3']
+  stdout:
+    | Creating resource:
+    | Name:		"demoResc"
+    | Type:		"s3"
+    | Host:		"68622b26cb12"
+    | Path:		"/irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/demoResc"
+    | Context:	"S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/minio.keypair;S3_REGIONNAME=us-east-1;S3_RETRY_COUNT=2;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=decoupled;HOST_MODE=cacheless_attached;S3_ENABLE_MD5=1;S3_ENABLE_MPU=1;S3_CACHE_DIR=/var/lib/irods"
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [iadmin mkresc TestResc s3 68622b26cb12:/irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/TestResc S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/minio.keypair;S3_REGIONNAME=us-east-1;S3_RETRY_COUNT=2;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=decoupled;HOST_MODE=cacheless_attached;S3_ENABLE_MD5=1;S3_ENABLE_MPU=1;S3_CACHE_DIR=/var/lib/irods] --- 
+Assert Command: iadmin mkresc TestResc s3 68622b26cb12:/irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/TestResc S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/minio.keypair;S3_REGIONNAME=us-east-1;S3_RETRY_COUNT=2;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=decoupled;HOST_MODE=cacheless_attached;S3_ENABLE_MD5=1;S3_ENABLE_MPU=1;S3_CACHE_DIR=/var/lib/irods
+Expecting STDOUT_SINGLELINE: ['s3']
+  stdout:
+    | Creating resource:
+    | Name:		"TestResc"
+    | Type:		"s3"
+    | Host:		"68622b26cb12"
+    | Path:		"/irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/TestResc"
+    | Context:	"S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/minio.keypair;S3_REGIONNAME=us-east-1;S3_RETRY_COUNT=2;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=decoupled;HOST_MODE=cacheless_attached;S3_ENABLE_MD5=1;S3_ENABLE_MPU=1;S3_CACHE_DIR=/var/lib/irods"
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [iadmin mkresc AnotherResc s3 68622b26cb12:/irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/AnotherResc S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/minio.keypair;S3_REGIONNAME=us-east-1;S3_RETRY_COUNT=2;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=decoupled;HOST_MODE=cacheless_attached;S3_ENABLE_MD5=1;S3_ENABLE_MPU=1;S3_CACHE_DIR=/var/lib/irods] --- 
+Assert Command: iadmin mkresc AnotherResc s3 68622b26cb12:/irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/AnotherResc S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/minio.keypair;S3_REGIONNAME=us-east-1;S3_RETRY_COUNT=2;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=decoupled;HOST_MODE=cacheless_attached;S3_ENABLE_MD5=1;S3_ENABLE_MPU=1;S3_CACHE_DIR=/var/lib/irods
+Expecting STDOUT_SINGLELINE: ['s3']
+  stdout:
+    | Creating resource:
+    | Name:		"AnotherResc"
+    | Type:		"s3"
+    | Host:		"68622b26cb12"
+    | Path:		"/irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/AnotherResc"
+    | Context:	"S3_DEFAULT_HOSTNAME=localhost:9000;S3_AUTH_FILE=/var/lib/irods/minio.keypair;S3_REGIONNAME=us-east-1;S3_RETRY_COUNT=2;S3_WAIT_TIME_SECONDS=3;S3_PROTO=HTTP;ARCHIVE_NAMING_POLICY=decoupled;HOST_MODE=cacheless_attached;S3_ENABLE_MD5=1;S3_ENABLE_MPU=1;S3_CACHE_DIR=/var/lib/irods"
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [imkdir testdir] --- 
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [iput testfile.txt] --- 
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [icp testfile.txt ../../public/] --- 
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [ichmod read alice ../../public/testfile.txt] --- 
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [ichmod write bobby ../../public/testfile.txt] --- 
+run_resource_setup - END
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [ils -L secondreplicatest.txt] --- 
+Assert Command: ils -L secondreplicatest.txt
+Expecting STDERR_SINGLELINE: ['does not exist']
+  stdout:
+    | 
+  stderr:
+    | remote addresses: 10.201.43.21 ERROR: lsUtil: srcPath /tempZone/home/otherrods/2024-04-27Z03:14:28--irods-testing-2ntfhj6s/secondreplicatest.txt does not exist or user lacks access permission
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [iput -R TestResc secondreplicatest.txt] --- 
+Assert Command: iput -R TestResc secondreplicatest.txt
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [ils -L secondreplicatest.txt] --- 
+Assert Command: ils -L secondreplicatest.txt
+Expecting STDOUT_SINGLELINE: ['secondreplicatest.txt']
+  stdout:
+    |   otherrods         0 TestResc           50 2024-04-27.03:14 & secondreplicatest.txt
+    |         generic    /irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/33001/secondreplicatest.txt
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [irepl secondreplicatest.txt] --- 
+Assert Command: irepl secondreplicatest.txt
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [ils -L secondreplicatest.txt] --- 
+Assert Command: ils -L secondreplicatest.txt
+Expecting STDOUT_SINGLELINE: ['secondreplicatest.txt']
+  stdout:
+    |   otherrods         0 TestResc           50 2024-04-27.03:14 & secondreplicatest.txt
+    |         generic    /irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/33001/secondreplicatest.txt
+    |   otherrods         1 demoResc           50 2024-04-27.03:14 & secondreplicatest.txt
+    |         generic    /irods-ci-ubuntu-2204-2024-04-2703-14-31-991637-zwkneqpizf/33001/secondreplicatest.txt
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [irepl secondreplicatest.txt] --- 
+Assert Command: irepl secondreplicatest.txt
+Expecting STDERR: ['SYS_NOT_ALLOWED']
+  stdout:
+    | 
+  stderr:
+    | 
+Output not found
+
+FAILED TESTING ASSERTION
+
+
+run_resource_teardown - BEGIN
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [icd] --- 
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [irm testfile.txt ../public/testfile.txt] --- 
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [irm -rf ../../bundle] --- 
+ --- IrodsSession: icommand executed by [rods#tempZone] [iinit] --- 
+Assert Command: iinit
+Expecting STDOUT_SINGLELINE: ['']
+  stdout:
+    | WARNING: Error 25 disabling echo mode. Password will be displayed in plaintext.
+    | Enter your current iRODS password:
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [icd] --- 
+Assert Command: icd
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [irm -rf /tempZone/home/otherrods/2024-04-27Z03:14:28--irods-testing-2ntfhj6s] --- 
+Assert Command: irm -rf /tempZone/home/otherrods/2024-04-27Z03:14:28--irods-testing-2ntfhj6s
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [otherrods#tempZone] [irmtrash] --- 
+Assert Command: irmtrash
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin rmuser otherrods] --- 
+Assert Command: iadmin rmuser otherrods
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [alice#tempZone] [icd] --- 
+Assert Command: icd
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [alice#tempZone] [irm -rf /tempZone/home/alice/2024-04-27Z03:14:30--irods-testing-5z4zmqzf] --- 
+Assert Command: irm -rf /tempZone/home/alice/2024-04-27Z03:14:30--irods-testing-5z4zmqzf
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [alice#tempZone] [irmtrash] --- 
+Assert Command: irmtrash
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin rmuser alice] --- 
+Assert Command: iadmin rmuser alice
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [bobby#tempZone] [icd] --- 
+Assert Command: icd
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [bobby#tempZone] [irm -rf /tempZone/home/bobby/2024-04-27Z03:14:31--irods-testing-6fvwpgzz] --- 
+Assert Command: irm -rf /tempZone/home/bobby/2024-04-27Z03:14:31--irods-testing-6fvwpgzz
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [bobby#tempZone] [irmtrash] --- 
+Assert Command: irmtrash
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin rmuser bobby] --- 
+Assert Command: iadmin rmuser bobby
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iinit] --- 
+Assert Command: iinit
+Expecting STDOUT_SINGLELINE: ['']
+  stdout:
+    | WARNING: Error 25 disabling echo mode. Password will be displayed in plaintext.
+    | Enter your current iRODS password:
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [irmtrash -M] --- 
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin rmresc TestResc] --- 
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin rmresc AnotherResc] --- 
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin rmresc demoResc] --- 
+Assert Command: iadmin rmresc demoResc
+Expecting EMPTY: ['']
+  stdout:
+    | 
+  stderr:
+    | 
+Output found
+
+ --- IrodsSession: icommand executed by [rods#tempZone] [iadmin modresc origResc name demoResc] --- 
+Assert Command: iadmin modresc origResc name demoResc
+Expecting STDOUT_SINGLELINE: ['rename']
+  stdout:
+    | If you modify a resource name, you and other users will need to
+    | change your irods_environment.json files to use it, you may need to update
+    | server_config.json and, if rules use the resource name, you'll need to
+    | update the core rules (core.re).  This command will update various
+    | tables with the new name.
+    | Do you really want to modify the resource name? (enter y or yes to do so):OK, performing the resource rename
+  stderr:
+    | 
+Output found
+
+run_resource_teardown - END
+]]></system-out>
+	<system-err><![CDATA[]]></system-err>
+</testsuite>

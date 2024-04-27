@@ -1,0 +1,1953 @@
+2024-04-27T03:12:49.594Z - WARNING -                 setup_irods.py: 194 - Warning: Hostname `9cc87577acf8` should be a fully qualified domain name.
+2024-04-27T03:12:49.594Z -   DEBUG -                     execute.py:  52 - Calling ['/usr/sbin/hostname_resolves_to_local_address', '9cc87577acf8'] with options:
+{'shell': False, 'stderr': -1, 'stdout': -1}
+2024-04-27T03:12:49.611Z -   DEBUG -                     execute.py:  37 - Command ['/usr/sbin/hostname_resolves_to_local_address', '9cc87577acf8'] returned with code 0.
+stdout:
+  yes
+2024-04-27T03:12:49.631Z -    INFO -               configuration.py: 300 - Updating /var/lib/irods/version.json...
+2024-04-27T03:12:49.632Z -    INFO -                 setup_irods.py: 260 - The iRODS service account name needs to be defined.
+2024-04-27T03:12:49.632Z -   DEBUG -                         lib.py: 429 - iRODS user [irods]: 
+2024-04-27T03:12:49.632Z -   DEBUG -                         lib.py: 434 - User input: 
+2024-04-27T03:12:49.632Z -   DEBUG -                         lib.py: 429 - iRODS group [irods]: 
+2024-04-27T03:12:49.632Z -   DEBUG -                         lib.py: 434 - User input: 
+2024-04-27T03:12:49.632Z -    INFO -                 setup_irods.py: 271 - 
++--------------------------------+
+| Setting up the service account |
++--------------------------------+
+
+2024-04-27T03:12:49.632Z -    INFO -                 setup_irods.py: 274 - Creating Service Group: irods
+2024-04-27T03:12:49.632Z -   DEBUG -                     execute.py:  52 - Calling ['groupadd', '-r', 'irods'] with options:
+{'shell': False, 'stderr': -1, 'stdout': -1}
+2024-04-27T03:12:50.569Z -   DEBUG -                     execute.py:  37 - Command ['groupadd', '-r', 'irods'] returned with code 0.
+2024-04-27T03:12:50.570Z -   DEBUG -                     execute.py:  52 - Calling ['id', 'irods'] with options:
+{'shell': False, 'stderr': -1, 'stdout': -1}
+2024-04-27T03:12:50.572Z -   DEBUG -                     execute.py:  37 - Command ['id', 'irods'] returned with code 1.
+stderr:
+  id: ‘irods’: no such user
+2024-04-27T03:12:50.572Z -    INFO -                 setup_irods.py: 285 - Creating Service Account: irods
+2024-04-27T03:12:50.573Z -   DEBUG -                     execute.py:  52 - Calling ['useradd', '-r', '-d', '/var/lib/irods', '-M', '-s', '/bin/bash', '-g', 'irods', '-c', 'iRODS Administrator', '-p', '!', 'irods'] with options:
+{'shell': False, 'stderr': -1, 'stdout': -1}
+2024-04-27T03:12:52.879Z -   DEBUG -                     execute.py:  37 - Command ['useradd', '-r', '-d', '/var/lib/irods', '-M', '-s', '/bin/bash', '-g', 'irods', '-c', 'iRODS Administrator', '-p', '!', 'irods'] returned with code 0.
+2024-04-27T03:12:52.879Z -    INFO -                 setup_irods.py: 303 - Setting owner of /var/lib/irods to irods:irods
+2024-04-27T03:12:52.917Z -    INFO -                 setup_irods.py: 314 - Setting owner of /etc/irods to irods:irods
+2024-04-27T03:12:52.917Z -   DEBUG -                 setup_irods.py: 325 - Setting uid bit on /var/lib/irods/clients/bin/genOSAuth
+2024-04-27T03:12:52.918Z -   DEBUG -                     execute.py:  52 - Calling ['su', '-', 'irods', '-c', 'python3 -c "from __future__ import print_function; import os; import json; print(json.dumps(dict(os.environ)))"'] with options:
+{'shell': False, 'stderr': -1, 'stdout': -1}
+2024-04-27T03:12:53.033Z -   DEBUG -                     execute.py:  37 - Command ['su', '-', 'irods', '-c', 'python3 -c "from __future__ import print_function; import os; import json; print(json.dumps(dict(os.environ)))"'] returned with code 0.
+stdout:
+  {"SHELL": "/bin/bash", "PWD": "/var/lib/irods", "LOGNAME": "irods", "HOME": "/var/lib/irods", "USER": "irods", "SHLVL": "0", "PATH": "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin", "MAIL": "/var/mail/irods", "_": "/usr/bin/python3", "LC_CTYPE": "C.UTF-8"}
+2024-04-27T03:12:53.034Z -   DEBUG -               configuration.py: 438 - /etc/irods/server_config.json does not exist, copying from template file /var/lib/irods/packaging/server_config.json.template
+2024-04-27T03:12:53.042Z -   DEBUG -               configuration.py: 440 - Loading /etc/irods/server_config.json into dictionary
+2024-04-27T03:12:53.042Z -   DEBUG -                         lib.py: 429 - iRODS server's role:
+1. provider
+2. consumer
+Please select a number or choose 0 to enter a new value [1]: 
+2024-04-27T03:12:53.042Z -   DEBUG -                         lib.py: 434 - User input: 
+2024-04-27T03:12:53.042Z -    INFO -               configuration.py: 300 - Updating /etc/irods/server_config.json...
+2024-04-27T03:12:53.082Z -    INFO -                 setup_irods.py: 122 - 
++-----------------------------------------+
+| Configuring the database communications |
++-----------------------------------------+
+
+2024-04-27T03:12:53.082Z -   DEBUG -          database_interface.py:  97 - setup_database_config has been called with database type 'mysql'.
+2024-04-27T03:12:53.082Z -    INFO -          database_interface.py:  99 - You are configuring an iRODS database plugin. The iRODS server cannot be started until its database has been properly configured.
+
+2024-04-27T03:12:53.082Z -   DEBUG -                     execute.py:  52 - Calling ['odbcinst', '-q', '-d'] with options:
+{'shell': False, 'stderr': -1, 'stdout': -1}
+2024-04-27T03:12:53.085Z -   DEBUG -                     execute.py:  37 - Command ['odbcinst', '-q', '-d'] returned with code 0.
+stdout:
+  [MySQL ANSI]
+  [MySQL Unicode]
+2024-04-27T03:12:53.085Z -   DEBUG -                         lib.py: 429 - ODBC driver for mysql:
+1. MySQL ANSI
+2. MySQL Unicode
+Please select a number or choose 0 to enter a new value [1]: 
+2024-04-27T03:12:53.085Z -   DEBUG -                         lib.py: 434 - User input: 
+2024-04-27T03:12:53.086Z -   DEBUG -               configuration.py:  94 - No driver found in the database config, attempting to retrieve the one in the odbc ini file at "/var/lib/irods/.odbc.ini"...
+2024-04-27T03:12:53.086Z -   DEBUG -               configuration.py: 100 - No odbc.ini file present
+2024-04-27T03:12:53.086Z -   DEBUG -               configuration.py: 107 - Unable to retrieve "Driver" field from odbc ini file
+2024-04-27T03:12:53.086Z -   DEBUG -                         lib.py: 429 - Database server's hostname or IP address [localhost]: 
+2024-04-27T03:12:53.086Z -   DEBUG -                         lib.py: 434 - User input: 404cf78ec9f8
+2024-04-27T03:12:53.086Z -   DEBUG -                         lib.py: 429 - Database server's port [3306]: 
+2024-04-27T03:12:53.086Z -   DEBUG -                         lib.py: 434 - User input: 3306
+2024-04-27T03:12:53.086Z -   DEBUG -                         lib.py: 429 - Database name [ICAT]: 
+2024-04-27T03:12:53.086Z -   DEBUG -                         lib.py: 434 - User input: ICAT
+2024-04-27T03:12:53.086Z -   DEBUG -                         lib.py: 429 - Database username [irods]: 
+2024-04-27T03:12:53.086Z -   DEBUG -                         lib.py: 434 - User input: irods
+2024-04-27T03:12:53.087Z -   DEBUG -                         lib.py: 429 - 
+-------------------------------------------
+Database Type: mysql
+ODBC Driver:   MySQL ANSI
+Database Host: 404cf78ec9f8
+Database Port: 3306
+Database Name: ICAT
+Database User: irods
+-------------------------------------------
+
+Please confirm [yes]: 
+2024-04-27T03:12:53.087Z -   DEBUG -                         lib.py: 434 - User input: y
+2024-04-27T03:12:53.087Z -   DEBUG -                         lib.py: 429 - Database password: 
+2024-04-27T03:12:53.087Z -    INFO -               configuration.py: 300 - Updating /etc/irods/server_config.json...
+2024-04-27T03:12:53.164Z -   DEBUG -               configuration.py: 440 - Loading /etc/irods/server_config.json into dictionary
+2024-04-27T03:12:53.165Z -   DEBUG -                     execute.py:  52 - Calling ['odbcinst', '-i', '-s', '-h', '-r'] with options:
+{'env': 'HIDDEN', 'shell': False, 'stderr': -1, 'stdin': -1, 'stdout': -1}
+2024-04-27T03:12:53.247Z -   DEBUG -                     execute.py:  37 - Command ['odbcinst', '-i', '-s', '-h', '-r'] returned with code 0.
+stdin:
+  [iRODS Catalog]
+  Driver=MySQL ANSI
+  Description=iRODS catalog
+  Server=404cf78ec9f8
+  Port=3306
+  Database=ICAT
+  FOUND_ROWS=1
+  BIG_PACKETS=1
+  Charset=UTF8
+stdout:
+  odbcinst: Sections and Entries from stdin have been added to ODBC.INI
+2024-04-27T03:12:53.309Z -    INFO -            database_connect.py: 284 - Listing database tables...
+2024-04-27T03:12:53.315Z -   DEBUG -            database_connect.py: 286 - List of tables:
+[]
+2024-04-27T03:12:53.315Z -   DEBUG -                         lib.py: 429 - Salt for passwords stored in the database: 
+2024-04-27T03:12:53.315Z -    INFO -               configuration.py: 300 - Updating /etc/irods/server_config.json...
+2024-04-27T03:12:53.316Z -    INFO -                 setup_irods.py: 218 - 
++---------------------------+
+| Determining local storage |
++---------------------------+
+
+2024-04-27T03:12:53.316Z -   DEBUG -                         lib.py: 429 - Local storage on this server [yes]: 
+2024-04-27T03:12:53.317Z -   DEBUG -                         lib.py: 434 - User input: y
+2024-04-27T03:12:53.317Z -    INFO -                 setup_irods.py: 225 - True
+2024-04-27T03:12:53.317Z -    INFO -                 setup_irods.py: 233 - 
++----------------------------------+
+| Setting up default resource name |
++----------------------------------+
+
+2024-04-27T03:12:53.317Z -   DEBUG -                         lib.py: 429 - Default resource [demoResc]: 
+2024-04-27T03:12:53.317Z -   DEBUG -                         lib.py: 434 - User input: 
+2024-04-27T03:12:53.317Z -    INFO -                 setup_irods.py: 248 - 
++--------------------------+
+| Setting up default vault |
++--------------------------+
+
+2024-04-27T03:12:53.317Z -   DEBUG -                         lib.py: 429 - iRODS Vault directory [/var/lib/irods/Vault]: 
+2024-04-27T03:12:53.317Z -   DEBUG -                         lib.py: 434 - User input: 
+2024-04-27T03:12:53.317Z -    INFO -                 setup_irods.py: 357 - 
++--------------------------------+
+| Configuring the server options |
++--------------------------------+
+
+2024-04-27T03:12:53.318Z -   DEBUG -                         lib.py: 429 - iRODS server's zone name [tempZone]: 
+2024-04-27T03:12:53.318Z -   DEBUG -                         lib.py: 434 - User input: tempZone
+2024-04-27T03:12:53.318Z -   DEBUG -                         lib.py: 429 - iRODS server's port [1247]: 
+2024-04-27T03:12:53.318Z -   DEBUG -                         lib.py: 434 - User input: 1247
+2024-04-27T03:12:53.318Z -   DEBUG -                         lib.py: 429 - iRODS port range (begin) [20000]: 
+2024-04-27T03:12:53.318Z -   DEBUG -                         lib.py: 434 - User input: 20000
+2024-04-27T03:12:53.318Z -   DEBUG -                         lib.py: 429 - iRODS port range (end) [20199]: 
+2024-04-27T03:12:53.318Z -   DEBUG -                         lib.py: 434 - User input: 20199
+2024-04-27T03:12:53.318Z -   DEBUG -                         lib.py: 429 - Control Plane port [1248]: 
+2024-04-27T03:12:53.318Z -   DEBUG -                         lib.py: 434 - User input: 1248
+2024-04-27T03:12:53.319Z -   DEBUG -                         lib.py: 429 - Schema Validation Base URI (or off) [file:///var/lib/irods/configuration_schemas]: 
+2024-04-27T03:12:53.319Z -   DEBUG -                         lib.py: 434 - User input: 
+2024-04-27T03:12:53.319Z -   DEBUG -                         lib.py: 429 - iRODS server's administrator username [rods]: 
+2024-04-27T03:12:53.319Z -   DEBUG -                         lib.py: 434 - User input: rods
+2024-04-27T03:12:53.319Z -   DEBUG -                         lib.py: 429 - 
+-------------------------------------------
+Zone name:                  tempZone
+iRODS server port:          1247
+iRODS port range (begin):   20000
+iRODS port range (end):     20199
+Control plane port:         1248
+Schema validation base URI: file:///var/lib/irods/configuration_schemas
+iRODS server administrator: rods
+-------------------------------------------
+
+Please confirm [yes]: 
+2024-04-27T03:12:53.319Z -   DEBUG -                         lib.py: 434 - User input: y
+2024-04-27T03:12:53.319Z -   DEBUG -                         lib.py: 429 - iRODS server's zone key: 
+2024-04-27T03:12:53.319Z -   DEBUG -                         lib.py: 429 - iRODS server's negotiation key (32 characters): 
+2024-04-27T03:12:53.319Z -   DEBUG -                         lib.py: 429 - Control Plane key (32 characters): 
+2024-04-27T03:12:53.319Z -    INFO -               configuration.py: 300 - Updating /etc/irods/server_config.json...
+2024-04-27T03:12:53.373Z -    INFO -                 setup_irods.py: 453 - 
++-----------------------------------+
+| Setting up the client environment |
++-----------------------------------+
+
+2024-04-27T03:12:53.373Z -   DEBUG -                         lib.py: 429 - iRODS server's administrator password: 
+2024-04-27T03:12:53.374Z -   DEBUG -               configuration.py: 228 - Writing password file /var/lib/irods/.irods/.irodsA
+2024-04-27T03:12:53.375Z -    INFO -               configuration.py: 300 - Updating /var/lib/irods/.irods/irods_environment.json...
+2024-04-27T03:12:53.412Z -    INFO -                 setup_irods.py: 133 - 
++-------------------------+
+| Setting up the database |
++-------------------------+
+
+2024-04-27T03:12:53.413Z -   DEBUG -                     execute.py:  52 - Calling ['odbcinst', '-i', '-s', '-h', '-r'] with options:
+{'env': 'HIDDEN', 'shell': False, 'stderr': -1, 'stdin': -1, 'stdout': -1}
+2024-04-27T03:12:53.673Z -   DEBUG -                     execute.py:  37 - Command ['odbcinst', '-i', '-s', '-h', '-r'] returned with code 0.
+stdin:
+  [iRODS Catalog]
+  Driver=MySQL ANSI
+  Description=iRODS catalog
+  Server=404cf78ec9f8
+  Port=3306
+  Database=ICAT
+  FOUND_ROWS=1
+  BIG_PACKETS=1
+  Charset=UTF8
+stdout:
+  odbcinst: Sections and Entries from stdin have been added to ODBC.INI
+2024-04-27T03:12:53.682Z -    INFO -            database_connect.py: 284 - Listing database tables...
+2024-04-27T03:12:53.685Z -   DEBUG -            database_connect.py: 286 - List of tables:
+[]
+2024-04-27T03:12:53.685Z -    INFO -            database_connect.py: 343 - Defining mysql functions...
+2024-04-27T03:12:53.686Z -   DEBUG -                     execute.py:  52 - Calling ['/usr/bin/mysql', '--defaults-file=/tmp/tmpfzebqezg', 'ICAT'] with options:
+{'shell': False,
+ 'stderr': -1,
+ 'stdin': <_io.TextIOWrapper name='/var/lib/irods/packaging/sql/mysql_functions.sql' mode='r' encoding='UTF-8'>,
+ 'stdout': -1}
+2024-04-27T03:12:54.098Z -   DEBUG -                     execute.py:  37 - Command ['/usr/bin/mysql', '--defaults-file=/tmp/tmpfzebqezg', 'ICAT'] returned with code 0.
+2024-04-27T03:12:54.098Z -    INFO -            database_connect.py: 362 - Creating database tables...
+2024-04-27T03:12:54.099Z -   DEBUG -            database_connect.py: 259 - Executing SQL in /var/lib/irods/packaging/sql/icatSysTables.sql
+2024-04-27T03:12:54.099Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_ZONE_MAIN ( zone_id bigint not null, zone_name varchar(250) not null, zone_type_name varchar(250) not null, zone_conn_string varchar(1000), r_comment varchar(1000), create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:55.371Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_USER_MAIN ( user_id bigint not null, user_name varchar(250) not null, user_type_name varchar(250) not null, zone_name varchar(250) not null, user_info varchar(1000), r_comment varchar(1000), create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:56.573Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_RESC_MAIN ( resc_id bigint not null, resc_name varchar(250) not null, zone_name varchar(250) not null, resc_type_name varchar(250) not null, resc_class_name varchar(250) not null, resc_net varchar(250) not null, resc_def_path varchar(1000) not null, free_space varchar(250), free_space_ts varchar(32), resc_info varchar(1000), r_comment varchar(1000), resc_status varchar(32), create_ts varchar(32), modify_ts varchar(32), resc_children varchar(1000), resc_context varchar(1000), resc_parent varchar(1000), resc_objcount bigint DEFAULT 0) ;
+
+2024-04-27T03:12:58.063Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_COLL_MAIN ( coll_id bigint not null, parent_coll_name varchar(2700) not null, coll_name varchar(2700) not null, coll_owner_name varchar(250) not null, coll_owner_zone varchar(250) not null, coll_map_id bigint DEFAULT 0, coll_inheritance varchar(1000), coll_type varchar(250) DEFAULT '0', coll_info1 varchar(2700) DEFAULT '0', coll_info2 varchar(2700) DEFAULT '0', coll_expiry_ts varchar(32), r_comment varchar(1000), create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.197Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_DATA_MAIN ( data_id bigint not null, coll_id bigint not null, data_name varchar(1000) not null, data_repl_num INTEGER not null, data_version varchar(250) DEFAULT '0', data_type_name varchar(250) not null, data_size bigint not null, resc_group_name varchar(250), resc_name varchar(250) not null, data_path varchar(2700) not null, data_owner_name varchar(250) not null, data_owner_zone varchar(250) not null, data_is_dirty INTEGER DEFAULT 0, data_status varchar(250), data_checksum varchar(1000), data_expiry_ts varchar(32), data_map_id bigint DEFAULT 0, data_mode varchar(32), r_comment varchar(1000), create_ts varchar(32), modify_ts varchar(32), resc_hier varchar(1000)) ;
+
+2024-04-27T03:12:59.560Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_META_MAIN ( meta_id bigint not null, meta_namespace varchar(250), meta_attr_name varchar(2700) not null, meta_attr_value varchar(2700) not null, meta_attr_unit varchar(250), r_comment varchar(1000), create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.634Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_TOKN_MAIN ( token_namespace varchar(250) not null, token_id bigint not null, token_name varchar(250) not null, token_value varchar(250), token_value2 varchar(250), token_value3 varchar(250), r_comment varchar(1000), create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.647Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_RULE_MAIN ( rule_id bigint not null, rule_version varchar(250) DEFAULT '0', rule_base_name varchar(250) not null, rule_name text not null, rule_event text not null, rule_condition text, rule_body text not null, rule_recovery text not null, rule_status bigint DEFAULT 1, rule_owner_name varchar(250) not null, rule_owner_zone varchar(250) not null, rule_descr_1 text, rule_descr_2 text, input_params text, output_params text, dollar_vars text, icat_elements text, sideeffects text, r_comment varchar(1000), create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.660Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_RULE_BASE_MAP ( map_version varchar(250) DEFAULT '0', map_base_name varchar(250) not null, map_priority INTEGER not null, rule_id bigint not null, map_owner_name varchar(250) not null, map_owner_zone varchar(250) not null, r_comment varchar(1000), create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.674Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_RULE_DVM ( dvm_id bigint not null, dvm_version varchar(250) DEFAULT '0', dvm_base_name varchar(250) not null, dvm_ext_var_name varchar(250) not null, dvm_condition varchar(2700), dvm_int_map_path varchar(2700) not null, dvm_status INTEGER DEFAULT 1, dvm_owner_name varchar(250) not null, dvm_owner_zone varchar(250) not null, r_comment varchar(1000), create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.688Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_RULE_DVM_MAP ( map_dvm_version varchar(250) DEFAULT '0', map_dvm_base_name varchar(250) not null, dvm_id bigint not null, map_owner_name varchar(250) not null, map_owner_zone varchar(250) not null, r_comment varchar(1000), create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.702Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_RULE_FNM ( fnm_id bigint not null, fnm_version varchar(250) DEFAULT '0', fnm_base_name varchar(250) not null, fnm_ext_func_name varchar(250) not null, fnm_int_func_name varchar(2700) not null, fnm_status INTEGER DEFAULT 1, fnm_owner_name varchar(250) not null, fnm_owner_zone varchar(250) not null, r_comment varchar(1000), create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.715Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_RULE_FNM_MAP ( map_fnm_version varchar(250) DEFAULT '0', map_fnm_base_name varchar(250) not null, fnm_id bigint not null, map_owner_name varchar(250) not null, map_owner_zone varchar(250) not null, r_comment varchar(1000), create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.729Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_MICROSRVC_MAIN ( msrvc_id bigint not null, msrvc_name varchar(250) not null, msrvc_module_name varchar(250) not null, msrvc_signature varchar(2700) not null, msrvc_doxygen varchar(2500) not null, msrvc_variations varchar(2500) not null, msrvc_owner_name varchar(250) not null, msrvc_owner_zone varchar(250) not null, r_comment varchar(1000), create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.743Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_MICROSRVC_VER ( msrvc_id bigint not null, msrvc_version varchar(250) DEFAULT '0', msrvc_host varchar(250) DEFAULT 'ALL', msrvc_location varchar(500), msrvc_language varchar(250) DEFAULT 'C', msrvc_type_name varchar(250) DEFAULT 'IRODS COMPILED', msrvc_status bigint DEFAULT 1, msrvc_owner_name varchar(250) not null, msrvc_owner_zone varchar(250) not null, r_comment varchar(1000), create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.757Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_RULE_EXEC ( rule_exec_id bigint not null, rule_name varchar(2700) not null, rei_file_path varchar(2700), user_name varchar(250), exe_address varchar(250), exe_time varchar(32), exe_frequency varchar(250), priority varchar(32), estimated_exe_time varchar(32), notification_addr varchar(250), last_exe_time varchar(32), exe_status varchar(32), create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.771Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_USER_GROUP ( group_user_id bigint not null, user_id bigint not null, create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.783Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_USER_SESSION_KEY ( user_id bigint not null, session_key varchar(1000) not null, session_info varchar(1000) , auth_scheme varchar(250) not null, session_expiry_ts varchar(32) not null, create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.797Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_USER_PASSWORD ( user_id bigint not null, rcat_password varchar(250) not null, pass_expiry_ts varchar(32) not null, create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.810Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_RESC_GROUP ( resc_group_id bigint not null, resc_group_name varchar(250) not null, resc_id bigint not null, create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.823Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_OBJT_METAMAP ( object_id bigint not null, meta_id bigint not null, create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.836Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_OBJT_ACCESS ( object_id bigint not null, user_id bigint not null, access_type_id bigint not null, create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.848Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_OBJT_DENY_ACCESS ( object_id bigint not null, user_id bigint not null, access_type_id bigint not null, create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.861Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_OBJT_AUDIT ( object_id bigint not null, user_id bigint not null, action_id bigint not null, r_comment varchar(1000), create_ts varchar(32), modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.874Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_SERVER_LOAD ( host_name varchar(250) not null, resc_name varchar(250) not null, cpu_used INTEGER, mem_used INTEGER, swap_used INTEGER, runq_load INTEGER, disk_space INTEGER, net_input INTEGER, net_output INTEGER, create_ts varchar(32)) ;
+
+2024-04-27T03:12:59.887Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_SERVER_LOAD_DIGEST ( resc_name varchar(250) not null, load_factor INTEGER, create_ts varchar(32)) ;
+
+2024-04-27T03:12:59.900Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_USER_AUTH ( user_id bigint not null, user_auth_name varchar(1000), create_ts varchar(32)) ;
+
+2024-04-27T03:12:59.913Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_QUOTA_MAIN ( user_id bigint, resc_id bigint, quota_limit bigint, quota_over bigint, modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.926Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_QUOTA_USAGE ( user_id bigint, resc_id bigint, quota_usage bigint, modify_ts varchar(32)) ;
+
+2024-04-27T03:12:59.938Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_SPECIFIC_QUERY ( alias varchar(1000), sqlStr varchar(2700), create_ts varchar(32)) ;
+
+2024-04-27T03:12:59.951Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_TICKET_MAIN ( ticket_id bigint not null, ticket_string varchar(100), ticket_type varchar(20), user_id bigint not null, object_id bigint not null, object_type varchar(16), uses_limit int DEFAULT 0, uses_count int DEFAULT 0, write_file_limit int DEFAULT 10, write_file_count int DEFAULT 0, write_byte_limit int DEFAULT 0, write_byte_count int DEFAULT 0, ticket_expiry_ts varchar(32), restrictions varchar(16), create_ts varchar(32), modify_ts varchar(32));
+
+2024-04-27T03:12:59.966Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_TICKET_ALLOWED_HOSTS ( ticket_id bigint not null, host varchar(32));
+
+2024-04-27T03:12:59.978Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_TICKET_ALLOWED_USERS ( ticket_id bigint not null, user_name varchar(250) not null);
+
+2024-04-27T03:12:59.991Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_TICKET_ALLOWED_GROUPS ( ticket_id bigint not null, group_name varchar(250) not null);
+
+2024-04-27T03:13:00.004Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_GRID_CONFIGURATION ( namespace varchar(2700), option_name varchar(2700), option_value varchar(2700));
+
+2024-04-27T03:13:00.016Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+drop table if exists R_ObjectId_seq_tbl;
+
+2024-04-27T03:13:00.017Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create table R_ObjectId_seq_tbl ( nextval bigint not null primary key auto_increment ) engine = MyISAM;
+
+2024-04-27T03:13:00.020Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+alter table R_ObjectId_seq_tbl AUTO_INCREMENT = 10000;
+
+2024-04-27T03:13:00.030Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create unique index idx_zone_main1 on R_ZONE_MAIN (zone_id);
+
+2024-04-27T03:13:00.046Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create unique index idx_zone_main2 on R_ZONE_MAIN (zone_name);
+
+2024-04-27T03:13:00.055Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create index idx_user_main1 on R_USER_MAIN (user_id);
+
+2024-04-27T03:13:00.063Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create unique index idx_user_main2 on R_USER_MAIN (user_name,zone_name);
+
+2024-04-27T03:13:00.084Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create index idx_resc_main1 on R_RESC_MAIN (resc_id);
+
+2024-04-27T03:13:00.093Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create unique index idx_resc_main2 on R_RESC_MAIN (zone_name,resc_name);
+
+2024-04-27T03:13:00.113Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create unique index idx_coll_main3 on R_COLL_MAIN (coll_name (767));
+
+2024-04-27T03:13:00.124Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create index idx_coll_main1 on R_COLL_MAIN (coll_id);
+
+2024-04-27T03:13:00.134Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create index idx_coll_main2 on R_COLL_MAIN (parent_coll_name(767));
+
+2024-04-27T03:13:00.144Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create index idx_data_main1 on R_DATA_MAIN (data_id);
+
+2024-04-27T03:13:00.153Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create unique index idx_data_main2 on R_DATA_MAIN (coll_id, data_name(515), data_repl_num, data_version);
+
+2024-04-27T03:13:00.163Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create index idx_data_main3 on R_DATA_MAIN (coll_id);
+
+2024-04-27T03:13:00.173Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create index idx_data_main4 on R_DATA_MAIN (data_name(515));
+
+2024-04-27T03:13:00.184Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create index idx_data_main5 on R_DATA_MAIN (data_type_name);
+
+2024-04-27T03:13:00.193Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create index idx_data_main6 on R_DATA_MAIN (data_path (767));
+
+2024-04-27T03:13:00.204Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create unique index idx_meta_main1 on R_META_MAIN (meta_id);
+
+2024-04-27T03:13:00.223Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create index idx_meta_main2 on R_META_MAIN (meta_attr_name (767));
+
+2024-04-27T03:13:00.231Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create index idx_meta_main3 on R_META_MAIN (meta_attr_value (767));
+
+2024-04-27T03:13:00.239Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create index idx_meta_main4 on R_META_MAIN (meta_attr_unit);
+
+2024-04-27T03:13:00.249Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create unique index idx_rule_main1 on R_RULE_MAIN (rule_id);
+
+2024-04-27T03:13:00.270Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create unique index idx_rule_exec on R_RULE_EXEC (rule_exec_id);
+
+2024-04-27T03:13:00.290Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create unique index idx_user_group1 on R_USER_GROUP (group_user_id,user_id);
+
+2024-04-27T03:13:00.309Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create unique index idx_resc_logical1 on R_RESC_GROUP (resc_group_name,resc_id);
+
+2024-04-27T03:13:00.328Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create unique index idx_objt_metamap1 on R_OBJT_METAMAP (object_id,meta_id);
+
+2024-04-27T03:13:00.343Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create index idx_objt_metamap2 on R_OBJT_METAMAP (object_id);
+
+2024-04-27T03:13:00.350Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create index idx_objt_metamap3 on R_OBJT_METAMAP (meta_id);
+
+2024-04-27T03:13:00.356Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create unique index idx_objt_access1 on R_OBJT_ACCESS (object_id,user_id);
+
+2024-04-27T03:13:00.377Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create unique index idx_objt_daccs1 on R_OBJT_DENY_ACCESS (object_id,user_id);
+
+2024-04-27T03:13:00.392Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create index idx_tokn_main1 on R_TOKN_MAIN (token_id);
+
+2024-04-27T03:13:00.400Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create index idx_tokn_main2 on R_TOKN_MAIN (token_name);
+
+2024-04-27T03:13:00.407Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create index idx_tokn_main3 on R_TOKN_MAIN (token_value);
+
+2024-04-27T03:13:00.415Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create index idx_tokn_main4 on R_TOKN_MAIN (token_namespace);
+
+2024-04-27T03:13:00.423Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create index idx_specific_query1 on R_SPECIFIC_QUERY (sqlStr (767));
+
+2024-04-27T03:13:00.428Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create index idx_specific_query2 on R_SPECIFIC_QUERY (alias (767));
+
+2024-04-27T03:13:00.435Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create unique index idx_ticket on R_TICKET_MAIN (ticket_string);
+
+2024-04-27T03:13:00.445Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create unique index idx_ticket_host on R_TICKET_ALLOWED_HOSTS (ticket_id, host);
+
+2024-04-27T03:13:00.452Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create unique index idx_ticket_user on R_TICKET_ALLOWED_USERS (ticket_id, user_name);
+
+2024-04-27T03:13:00.470Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create unique index idx_ticket_group on R_TICKET_ALLOWED_GROUPS (ticket_id, group_name);
+
+2024-04-27T03:13:00.487Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+create unique index idx_grid_configuration on R_GRID_CONFIGURATION (namespace(383), option_name(383));
+
+2024-04-27T03:13:00.494Z -   DEBUG -            database_connect.py: 259 - Executing SQL in /var/lib/irods/packaging/sql/icatSysInserts.sql
+2024-04-27T03:13:00.494Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_GRID_CONFIGURATION values ( 'database', 'schema_version', '1' );
+
+2024-04-27T03:13:00.494Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('token_namespace',0,'zone_type','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.495Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('token_namespace',1,'user_type','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.495Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('token_namespace',2,'data_type','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.495Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('token_namespace',3,'resc_type','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.496Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('token_namespace',4,'action_type','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.496Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('token_namespace',5,'rulexec_type','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.496Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('token_namespace',6,'access_type','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.496Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('token_namespace',7,'object_type','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.496Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('token_namespace',8,'resc_class','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.497Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('token_namespace',9,'coll_map','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.497Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('token_namespace',10,'auth_scheme_type','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.497Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('zone_type',100,'local','','native zone of this iCAT','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.497Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('zone_type',101,'remote','','foreign zone','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.498Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('user_type',200,'rodsgroup','','rods group users','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.498Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('user_type',201,'rodsadmin','','rods administrators','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.498Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('user_type',202,'rodsuser','','normal rods user','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.499Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('user_type',204,'groupadmin','','user group administrators','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.499Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('object_type',300,'data','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.499Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('object_type',301,'resource','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.499Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('object_type',302,'user','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.500Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('object_type',303,'rule','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.500Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('object_type',304,'metadata','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.500Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('object_type',305,'zone','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.500Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('object_type',306,'collection','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.500Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('object_type',307,'token','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.501Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('resc_type',400,'unixfilesystem','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.501Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('resc_type',401,'hpss file system','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.501Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('resc_type',402,'windows file system','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.501Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('resc_type',403,'s3','','','','','1250100000','1250100000');
+
+2024-04-27T03:13:00.502Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('resc_type',404,'MSS universal driver','','','','','1250100000','1250100000');
+
+2024-04-27T03:13:00.502Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('resc_type',405,'database','','','','','1288631300','1288631300');
+
+2024-04-27T03:13:00.502Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('resc_type',406,'mso','','','','','1312910000','1312910000');
+
+2024-04-27T03:13:00.502Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('rulexec_type',600,'immediate','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.503Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('rulexec_type',601,'delayed','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.503Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('rulexec_type',602,'queued','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.503Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('rulexec_type',603,'before','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.503Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('rulexec_type',604,'after','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.503Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('rulexec_type',605,'concurrent','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.504Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('access_type',1000,'null','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.504Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('access_type',1010,'execute','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.504Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('access_type',1020,'read annotation','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.504Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('access_type',1030,'read system metadata','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.504Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('access_type',1040,'read metadata','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.505Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('access_type',1050,'read object','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.505Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('access_type',1060,'write annotation','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.505Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('access_type',1070,'create metadata','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.505Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('access_type',1080,'modify metadata','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.505Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('access_type',1090,'delete metadata','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.506Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('access_type',1100,'administer object','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.506Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('access_type',1110,'create object','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.506Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('access_type',1120,'modify object','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.506Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('access_type',1130,'delete object','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.507Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('access_type',1140,'create token','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.507Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('access_type',1150,'delete token','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.507Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('access_type',1160,'curate','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.507Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('access_type',1200,'own','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.507Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('coll_map',1400,'generic','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.508Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('coll_map',1401,'direct','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.508Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('coll_map',1402,'hard link','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.508Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('coll_map',1403,'soft link','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.508Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('auth_scheme_type',1500,'SPASSWORD','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.509Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('auth_scheme_type',1501,'GSI','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.509Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1600,'generic','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.509Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1601,'text','text/text','|.txt|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.509Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1602,'ascii text','text/text','|.txt|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.510Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1603,'ascii compressed Lempel-Ziv','','|.z|.zip|.gz|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.510Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1604,'ascii compressed Huffman','','|.z|.zip|.gz|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.510Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1605,'ebcdic text','text/text','|.txt|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.510Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1606,'ebcdic compressed Lempel-Ziv','','|.z|.zip|.gz|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.511Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1607,'ebcdic compressed Huffman','','|.z|.zip|.gz|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.511Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1608,'image','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.511Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1609,'tiff image','image/tiff','|.tif|.tiff|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.511Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1610,'uuencoded tiff','text/text','|.uu|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.511Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1611,'gif image','image/gif','|.gif|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.512Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1612,'jpeg image','image/jpeg','|.jpeg|.jpg|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.512Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1613,'pbm image','image/pbm','|.pbm|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.512Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1614,'fig image','image/fig','|.fig|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.513Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1615,'FITS image','application/x-fits','|.fits|.fit|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.513Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1616,'DICOM image','application/dicom','|.IMA|.ima|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.513Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1617,'print-format','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.513Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1618,'LaTeX format','text/text','|.tex|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.513Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1619,'Troff format','text/text','|.trf|.trof|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.514Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1620,'Postscript format','application/postscript','|.ps|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.514Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1621,'DVI format','application/dvi','|.dvi|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.514Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1622,'Word format','application/msword','|.doc|.rtf|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.514Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1623,'program code','text/text','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.515Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1624,'SQL script','text/text','|.sql|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.515Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1625,'C code','text/text','|.c|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.515Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1626,'C include file','text/text','|.c|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.515Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1627,'fortran code','text/text','|.f|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.515Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1628,'object code','','|.o|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.516Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1629,'library code','','|.a|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.516Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1630,'data file','','|.dat|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.516Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1631,'html','text/html','|.htm|.html|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.516Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1632,'SGML File','text/sgml','|.sgm|.sgml|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.516Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1633,'Wave Audio','audio/x-wav','|.wav|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.517Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1634,'tar file','text/text','|.tar|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.517Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1635,'compressed tar file','|.tz|.tgz|.zip|','','','','1170000000','1170000000'  );
+
+2024-04-27T03:13:00.517Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1636,'java code','text/text','|.jav|.java|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.517Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1637,'perl script','text/text','|.pl|','','','1170000000','1170000000'  );
+
+2024-04-27T03:13:00.517Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1638,'tcl script','text/text','|.tcl|','','','1170000000','1170000000'  );
+
+2024-04-27T03:13:00.518Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1639,'link code','','|.o|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.518Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1640,'shadow object','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.518Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1641,'database shadow object','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.519Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1642,'directory shadow object','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.519Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1643,'database','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.519Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1644,'streams','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.519Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1645,'audio streams','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.519Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1646,'realAudio','audio/x-pn-realaudio','|.ra|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.519Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1647,'video streams','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.520Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1648,'realVideo','audio/x-pn-realaudio','|.rv|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.520Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1649,'MPEG','video/mpeg','|.mpeg|.mpg|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.520Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1650,'AVI','video/msvideo','|.avi|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.520Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1651,'PNG-Portable Network Graphics','image/png','|.png|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.521Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1652,'MP3 - MPEG Audio','audio/x-mpeg','|.mp3|.mpa|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.521Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1653,'WMV-Windows Media Video','video/x-wmv','|.wmv|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.521Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1654,'BMP -Bit Map','image/bmp','|.bmp|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.522Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1655,'CSS-Cascading Style Sheet','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.522Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1656,'xml','text/xml','|.xml|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.522Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1657,'Slide','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.522Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1658,'Power Point Slide','application/vnd.ms-powerpoint','|.ppt|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.523Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1659,'Spread Sheet','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.523Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1660,'Excel Spread Sheet','application/x-msexcel','|.xls|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.523Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1661,'Document','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.523Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1622,'MSWord Document','application/msword','|.doc|.rtf|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.524Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1663,'PDF Document','application/pdf','|.pdf|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.524Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1664,'Executable','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.524Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1665,'NT Executable','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.524Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1666,'Solaris Executable','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.525Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1667,'AIX Executable','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.525Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1668,'Mac Executable','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.525Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1669,'Mac OSX Executable','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.525Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1670,'Cray Executable','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.526Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1671,'SGI Executable','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.526Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1672,'DLL','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.526Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1673,'NT DLL','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.526Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1674,'Solaris DLL','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.527Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1675,'AIX DLL','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.527Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1676,'Mac DLL','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.527Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1677,'Cray DLL','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.527Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1678,'SGI DLL','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.528Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1679,'Movie','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.528Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1680,'MPEG Movie','video/mpeg','|.mpeg|.mpg|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.528Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1681,'MPEG 3 Movie','video/mpeg','|.mpeg|.mpg|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.528Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1682,'Quicktime Movie','video/quicktime','|.mov|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.529Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1683,'compressed file','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.529Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1684,'compressed mmCIF file','','|.cif|.mmcif|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.529Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1685,'compressed PDB file','','|.pdb|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.529Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1686,'binary file','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.529Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1687,'URL','text/html','|.htm|.html|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.530Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1688,'NSF Award Abstracts','text/text','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.530Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1689,'email','text/text','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.530Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1690,'orb data','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.531Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1691,'datascope data','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.531Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1692,'DICOM header','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.531Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1693,'XML Schema','text/xml','|.xsd|','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.531Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1694,'tar bundle','','','','','1250100000','1250100000');
+
+2024-04-27T03:13:00.531Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1695,'database object','text','','','','1288631300','1288631300');
+
+2024-04-27T03:13:00.532Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1696,'mso','','','','','1312910000','1312910000');
+
+2024-04-27T03:13:00.532Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1697,'gzipTar','','|.tar.gz|','','','1324000000','1324000000');
+
+2024-04-27T03:13:00.532Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1698,'bzip2Tar','','|.tar.bz2|','','','1324000000','1324000000');
+
+2024-04-27T03:13:00.532Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1699,'gzipFile','','|.gz|','','','1324000000','1324000000');
+
+2024-04-27T03:13:00.532Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1700,'bzip2File','','|.bz2|','','','1324000000','1324000000');
+
+2024-04-27T03:13:00.533Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1701,'zipFile','','|.zip|','','','1324000000','1324000000');
+
+2024-04-27T03:13:00.533Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1702,'gzipTar bundle','','','','','1324000000','1324000000');
+
+2024-04-27T03:13:00.533Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1703,'bzip2Tar bundle','','','','','1324000000','1324000000');
+
+2024-04-27T03:13:00.534Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1704,'zipFile bundle','','','','','1324000000','1324000000');
+
+2024-04-27T03:13:00.534Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('data_type',1705,'msso file','','','','','1324000000','1324000000');
+
+2024-04-27T03:13:00.534Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_TOKN_MAIN values ('action_type',1800,'generic','','','','','1170000000','1170000000');
+
+2024-04-27T03:13:00.534Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_SPECIFIC_QUERY (alias, sqlStr, create_ts) values ('ls', 'select alias, sqlStr from R_SPECIFIC_QUERY', '01292940000');
+
+2024-04-27T03:13:00.535Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_SPECIFIC_QUERY (alias, sqlStr, create_ts) values ('lsl', 'select alias, sqlStr from R_SPECIFIC_QUERY where sqlStr like ?', '01292940000');
+
+2024-04-27T03:13:00.535Z -   DEBUG -            database_connect.py: 265 - Executing SQL statement:
+insert into R_SPECIFIC_QUERY (alias, sqlStr, create_ts) values ('ShowCollAcls', 'select distinct R_USER_MAIN.user_name, R_USER_MAIN.zone_name, R_TOKN_MAIN.token_name, R_USER_MAIN.user_type_name from R_USER_MAIN, R_TOKN_MAIN, R_OBJT_ACCESS, R_COLL_MAIN where R_OBJT_ACCESS.object_id = R_COLL_MAIN.coll_id AND R_COLL_MAIN.coll_name = ? AND R_TOKN_MAIN.token_namespace = ''access_type'' AND R_USER_MAIN.user_id = R_OBJT_ACCESS.user_id AND R_OBJT_ACCESS.access_type_id = R_TOKN_MAIN.token_id', '01342019000');
+
+2024-04-27T03:13:00.535Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select R_OBJECTID_nextval();
+with the following parameters:
+()
+2024-04-27T03:13:00.536Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_ZONE_MAIN values (?,?,'local','','',?,?);
+with the following parameters:
+(10000, 'tempZone', '01714187580', '01714187580')
+2024-04-27T03:13:00.538Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select R_OBJECTID_nextval();
+with the following parameters:
+()
+2024-04-27T03:13:00.538Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_USER_MAIN values (?,?,?,?,'','',?,?);
+with the following parameters:
+(10001, 'public', 'rodsgroup', 'tempZone', '01714187580', '01714187580')
+2024-04-27T03:13:00.539Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select R_OBJECTID_nextval();
+with the following parameters:
+()
+2024-04-27T03:13:00.539Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_USER_MAIN values (?,?,?,?,'','',?,?);
+with the following parameters:
+(10002, 'rods', 'rodsadmin', 'tempZone', '01714187580', '01714187580')
+2024-04-27T03:13:00.540Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_USER_GROUP values (?,?,?,?);
+with the following parameters:
+(10002, 10002, '01714187580', '01714187580')
+2024-04-27T03:13:00.540Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_USER_GROUP values (?,?,?,?);
+with the following parameters:
+(10001, 10002, '01714187580', '01714187580')
+2024-04-27T03:13:00.540Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_USER_GROUP values (?,?,?,?);
+with the following parameters:
+(10001, 10001, '01714187580', '01714187580')
+2024-04-27T03:13:00.541Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_USER_PASSWORD values (?,?,'9999-12-31-23.59.00',?,?);
+with the following parameters:
+<hidden>
+2024-04-27T03:13:00.542Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select R_OBJECTID_nextval();
+with the following parameters:
+()
+2024-04-27T03:13:00.543Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_COLL_MAIN values (?,?,?,?,?,0,'','','','','','',?,?);
+with the following parameters:
+(10003, '/', '/', 'rods', 'tempZone', '01714187580', '01714187580')
+2024-04-27T03:13:00.543Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_OBJT_ACCESS values (?,?,1200,?,?);
+with the following parameters:
+(10003, 10002, '01714187580', '01714187580')
+2024-04-27T03:13:00.544Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select R_OBJECTID_nextval();
+with the following parameters:
+()
+2024-04-27T03:13:00.544Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_COLL_MAIN values (?,?,?,?,?,0,'','','','','','',?,?);
+with the following parameters:
+(10004, '/', '/tempZone', 'rods', 'tempZone', '01714187580', '01714187580')
+2024-04-27T03:13:00.544Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_OBJT_ACCESS values (?,?,1200,?,?);
+with the following parameters:
+(10004, 10002, '01714187580', '01714187580')
+2024-04-27T03:13:00.545Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select R_OBJECTID_nextval();
+with the following parameters:
+()
+2024-04-27T03:13:00.545Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_COLL_MAIN values (?,?,?,?,?,0,'','','','','','',?,?);
+with the following parameters:
+(10005,
+ '/tempZone',
+ '/tempZone/home',
+ 'rods',
+ 'tempZone',
+ '01714187580',
+ '01714187580')
+2024-04-27T03:13:00.546Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_OBJT_ACCESS values (?,?,1200,?,?);
+with the following parameters:
+(10005, 10002, '01714187580', '01714187580')
+2024-04-27T03:13:00.546Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select R_OBJECTID_nextval();
+with the following parameters:
+()
+2024-04-27T03:13:00.547Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_COLL_MAIN values (?,?,?,?,?,0,'','','','','','',?,?);
+with the following parameters:
+(10006,
+ '/tempZone',
+ '/tempZone/trash',
+ 'rods',
+ 'tempZone',
+ '01714187580',
+ '01714187580')
+2024-04-27T03:13:00.547Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_OBJT_ACCESS values (?,?,1200,?,?);
+with the following parameters:
+(10006, 10002, '01714187580', '01714187580')
+2024-04-27T03:13:00.547Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select R_OBJECTID_nextval();
+with the following parameters:
+()
+2024-04-27T03:13:00.548Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_COLL_MAIN values (?,?,?,?,?,0,'','','','','','',?,?);
+with the following parameters:
+(10007,
+ '/tempZone/trash',
+ '/tempZone/trash/home',
+ 'rods',
+ 'tempZone',
+ '01714187580',
+ '01714187580')
+2024-04-27T03:13:00.548Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_OBJT_ACCESS values (?,?,1200,?,?);
+with the following parameters:
+(10007, 10002, '01714187580', '01714187580')
+2024-04-27T03:13:00.549Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select R_OBJECTID_nextval();
+with the following parameters:
+()
+2024-04-27T03:13:00.549Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_COLL_MAIN values (?,?,?,?,?,0,'','','','','','',?,?);
+with the following parameters:
+(10008,
+ '/tempZone/home',
+ '/tempZone/home/public',
+ 'rods',
+ 'tempZone',
+ '01714187580',
+ '01714187580')
+2024-04-27T03:13:00.550Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_OBJT_ACCESS values (?,?,1200,?,?);
+with the following parameters:
+(10008, 10001, '01714187580', '01714187580')
+2024-04-27T03:13:00.550Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select R_OBJECTID_nextval();
+with the following parameters:
+()
+2024-04-27T03:13:00.550Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_COLL_MAIN values (?,?,?,?,?,0,'','','','','','',?,?);
+with the following parameters:
+(10009,
+ '/tempZone/trash/home',
+ '/tempZone/trash/home/public',
+ 'rods',
+ 'tempZone',
+ '01714187580',
+ '01714187580')
+2024-04-27T03:13:00.551Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_OBJT_ACCESS values (?,?,1200,?,?);
+with the following parameters:
+(10009, 10001, '01714187580', '01714187580')
+2024-04-27T03:13:00.551Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select R_OBJECTID_nextval();
+with the following parameters:
+()
+2024-04-27T03:13:00.551Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_COLL_MAIN values (?,?,?,?,?,0,'','','','','','',?,?);
+with the following parameters:
+(10010,
+ '/tempZone/home',
+ '/tempZone/home/rods',
+ 'rods',
+ 'tempZone',
+ '01714187580',
+ '01714187580')
+2024-04-27T03:13:00.552Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_OBJT_ACCESS values (?,?,1200,?,?);
+with the following parameters:
+(10010, 10002, '01714187580', '01714187580')
+2024-04-27T03:13:00.552Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select R_OBJECTID_nextval();
+with the following parameters:
+()
+2024-04-27T03:13:00.552Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_COLL_MAIN values (?,?,?,?,?,0,'','','','','','',?,?);
+with the following parameters:
+(10011,
+ '/tempZone/trash/home',
+ '/tempZone/trash/home/rods',
+ 'rods',
+ 'tempZone',
+ '01714187580',
+ '01714187580')
+2024-04-27T03:13:00.553Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_OBJT_ACCESS values (?,?,1200,?,?);
+with the following parameters:
+(10011, 10002, '01714187580', '01714187580')
+2024-04-27T03:13:00.553Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select R_OBJECTID_nextval();
+with the following parameters:
+()
+2024-04-27T03:13:00.554Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_RESC_MAIN (resc_id,resc_name,zone_name,resc_type_name,resc_class_name,resc_net,resc_def_path,free_space,free_space_ts,resc_info,r_comment,resc_status,create_ts,modify_ts) values (?,'bundleResc',?,'unixfilesystem','bundle','localhost','/bundle','','','','','',?,?);
+with the following parameters:
+(10012, 'tempZone', '01714187580', '01714187580')
+2024-04-27T03:13:00.554Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select R_OBJECTID_nextval();
+with the following parameters:
+()
+2024-04-27T03:13:00.554Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_RESC_MAIN (resc_id,resc_name,zone_name,resc_type_name,resc_class_name,resc_net,resc_def_path,free_space,free_space_ts,resc_info,r_comment,resc_status,create_ts,modify_ts) values (?,?,?,'unixfilesystem','cache',?,?,'','','','','',?,?);
+with the following parameters:
+(10013,
+ 'demoResc',
+ 'tempZone',
+ '9cc87577acf8',
+ '/var/lib/irods/Vault',
+ '01714187580',
+ '01714187580')
+2024-04-27T03:13:00.555Z -   DEBUG -          database_interface.py:  28 - Committing database changes...
+2024-04-27T03:13:00.555Z -    INFO -                 setup_irods.py: 136 - 
++-------------------+
+| Starting iRODS... |
++-------------------+
+
+2024-04-27T03:13:00.555Z -   DEBUG -                  controller.py:  63 - Calling start on IrodsController
+2024-04-27T03:13:00.556Z -   DEBUG -               configuration.py: 440 - Loading /var/lib/irods/version.json into dictionary
+2024-04-27T03:13:00.556Z -   DEBUG -               configuration.py: 440 - Loading /var/lib/irods/.irods/irods_environment.json into dictionary
+2024-04-27T03:13:00.556Z -   DEBUG -               configuration.py: 199 - Attempting to construct schema URI...
+2024-04-27T03:13:00.556Z -   DEBUG -               configuration.py: 210 - Successfully constructed schema URI.
+2024-04-27T03:13:00.556Z -   DEBUG -               configuration.py: 281 - Attempting to validate /etc/irods/server_config.json against file:///var/lib/irods/configuration_schemas/v4/server_config.json
+2024-04-27T03:13:00.556Z -   DEBUG -             json_validation.py:  85 - Loading schema from file:///var/lib/irods/configuration_schemas/v4/server_config.json
+2024-04-27T03:13:00.557Z -   DEBUG -             json_validation.py:  87 - Parsed URL: file:///var/lib/irods/configuration_schemas/v4/server_config.json
+2024-04-27T03:13:00.557Z -   DEBUG -             json_validation.py:  58 - Validating /etc/irods/server_config.json against json schema:
+2024-04-27T03:13:00.561Z -   DEBUG -             json_validation.py:  59 - {'$id': 'file:///var/lib/irods/configuration_schemas/v4/server_config.json',
+ '$schema': 'https://json-schema.org/draft/2020-12/schema',
+ 'properties': {'advanced_settings': {'properties': {'agent_factory_watcher_sleep_time_in_seconds': {'type': 'integer'},
+                                                     'default_number_of_transfer_threads': {'type': 'integer'},
+                                                     'default_temporary_password_lifetime_in_seconds': {'type': 'integer'},
+                                                     'delay_rule_executors': {'items': {'type': 'string'},
+                                                                              'type': 'array',
+                                                                              'uniqueItems': True},
+                                                     'delay_server_sleep_time_in_seconds': {'type': 'integer'},
+                                                     'dns_cache': {'properties': {'cache_clearer_sleep_time_in_seconds': {'type': 'integer'},
+                                                                                  'eviction_age_in_seconds': {'type': 'integer'},
+                                                                                  'shared_memory_size_in_bytes': {'type': 'integer'}},
+                                                                   'type': 'object'},
+                                                     'hostname_cache': {'properties': {'cache_clearer_sleep_time_in_seconds': {'type': 'integer'},
+                                                                                       'eviction_age_in_seconds': {'type': 'integer'},
+                                                                                       'shared_memory_size_in_bytes': {'type': 'integer'}},
+                                                                        'type': 'object'},
+                                                     'maximum_size_for_single_buffer_in_megabytes': {'type': 'integer'},
+                                                     'maximum_size_of_delay_queue_in_bytes': {'type': 'integer'},
+                                                     'maximum_temporary_password_lifetime_in_seconds': {'type': 'integer'},
+                                                     'migrate_delay_server_sleep_time_in_seconds': {'type': 'integer'},
+                                                     'number_of_concurrent_delay_rule_executors': {'type': 'integer'},
+                                                     'stacktrace_file_processor_sleep_time_in_seconds': {'type': 'integer'},
+                                                     'transfer_buffer_size_for_parallel_transfer_in_megabytes': {'type': 'integer'},
+                                                     'transfer_chunk_size_for_parallel_transfer_in_megabytes': {'type': 'integer'}},
+                                      'required': ['default_number_of_transfer_threads',
+                                                   'default_temporary_password_lifetime_in_seconds',
+                                                   'maximum_size_for_single_buffer_in_megabytes',
+                                                   'maximum_temporary_password_lifetime_in_seconds',
+                                                   'transfer_buffer_size_for_parallel_transfer_in_megabytes',
+                                                   'transfer_chunk_size_for_parallel_transfer_in_megabytes'],
+                                      'type': 'object'},
+                'catalog_provider_hosts': {'items': {'type': 'string'},
+                                           'minItems': 1,
+                                           'type': 'array',
+                                           'uniqueItems': True},
+                'catalog_service_role': {'enum': ['consumer', 'provider']},
+                'client_api_allowlist_policy': {'enum': ['disabled',
+                                                         'enforce']},
+                'controlled_user_connection_list': {'properties': {'control_type': {'enum': ['denylist',
+                                                                                             'allowlist']},
+                                                                   'users': {'items': {'type': 'string'},
+                                                                             'type': 'array',
+                                                                             'uniqueItems': True}},
+                                                    'type': 'object'},
+                'default_dir_mode': {'type': 'string'},
+                'default_file_mode': {'type': 'string'},
+                'default_hash_scheme': {'type': 'string'},
+                'environment_variables': {'additionalProperties': {'type': 'string'},
+                                          'type': 'object'},
+                'federation': {'items': {'properties': {'catalog_provider_hosts': {'items': {'type': 'string'},
+                                                                                   'minItems': 1,
+                                                                                   'type': 'array',
+                                                                                   'uniqueItems': True},
+                                                        'negotiation_key': {'maxLength': 32,
+                                                                            'minLength': 32,
+                                                                            'pattern': '^[A-Za-z0-9_]+$',
+                                                                            'type': 'string'},
+                                                        'zone_key': {'maxLength': 49,
+                                                                     'pattern': '^[A-Za-z0-9_]+$',
+                                                                     'type': 'string'},
+                                                        'zone_name': {'maxLength': 63,
+                                                                      'pattern': '^[A-Za-z0-9_\\.]+$',
+                                                                      'type': 'string'},
+                                                        'zone_port': {'type': 'integer'}},
+                                         'required': ['catalog_provider_hosts',
+                                                      'negotiation_key',
+                                                      'zone_key',
+                                                      'zone_name'],
+                                         'type': 'object'},
+                               'type': 'array'},
+                'host_access_control': {'$ref': 'host_access_control.json'},
+                'host_resolution': {'$ref': 'host_resolution.json'},
+                'log_level': {'items': {'properties': {'agent': {'enum': ['trace',
+                                                                          'debug',
+                                                                          'info',
+                                                                          'warn',
+                                                                          'error',
+                                                                          'critical'],
+                                                                 'maxItems': 1},
+                                                       'agent_factory': {'enum': ['trace',
+                                                                                  'debug',
+                                                                                  'info',
+                                                                                  'warn',
+                                                                                  'error',
+                                                                                  'critical'],
+                                                                         'maxItems': 1},
+                                                       'api': {'enum': ['trace',
+                                                                        'debug',
+                                                                        'info',
+                                                                        'warn',
+                                                                        'error',
+                                                                        'critical'],
+                                                               'maxItems': 1},
+                                                       'authentication': {'enum': ['trace',
+                                                                                   'debug',
+                                                                                   'info',
+                                                                                   'warn',
+                                                                                   'error',
+                                                                                   'critical'],
+                                                                          'maxItems': 1},
+                                                       'database': {'enum': ['trace',
+                                                                             'debug',
+                                                                             'info',
+                                                                             'warn',
+                                                                             'error',
+                                                                             'critical'],
+                                                                    'maxItems': 1},
+                                                       'delay_server': {'enum': ['trace',
+                                                                                 'debug',
+                                                                                 'info',
+                                                                                 'warn',
+                                                                                 'error',
+                                                                                 'critical'],
+                                                                        'maxItems': 1},
+                                                       'legacy': {'enum': ['trace',
+                                                                           'debug',
+                                                                           'info',
+                                                                           'warn',
+                                                                           'error',
+                                                                           'critical'],
+                                                                  'maxItems': 1},
+                                                       'microservice': {'enum': ['trace',
+                                                                                 'debug',
+                                                                                 'info',
+                                                                                 'warn',
+                                                                                 'error',
+                                                                                 'critical'],
+                                                                        'maxItems': 1},
+                                                       'network': {'enum': ['trace',
+                                                                            'debug',
+                                                                            'info',
+                                                                            'warn',
+                                                                            'error',
+                                                                            'critical'],
+                                                                   'maxItems': 1},
+                                                       'resource': {'enum': ['trace',
+                                                                             'debug',
+                                                                             'info',
+                                                                             'warn',
+                                                                             'error',
+                                                                             'critical'],
+                                                                    'maxItems': 1},
+                                                       'rule_engine': {'enum': ['trace',
+                                                                                'debug',
+                                                                                'info',
+                                                                                'warn',
+                                                                                'error',
+                                                                                'critical'],
+                                                                       'maxItems': 1},
+                                                       'server': {'enum': ['trace',
+                                                                           'debug',
+                                                                           'info',
+                                                                           'warn',
+                                                                           'error',
+                                                                           'critical'],
+                                                                  'maxItems': 1}}},
+                              'type': 'object'},
+                'match_hash_policy': {'type': 'string'},
+                'maximum_connections': {'minimum': 1, 'type': 'integer'},
+                'negotiation_key': {'maxLength': 32,
+                                    'minLength': 32,
+                                    'pattern': '^[A-Za-z0-9_]+$',
+                                    'type': 'string'},
+                'plugin_configuration': {'properties': {'authentication': {'properties': {},
+                                                                           'type': 'object'},
+                                                        'database': {'additionalProperties': {'$ref': 'database_config.json'},
+                                                                     'maxProperties': 1,
+                                                                     'minProperties': 1,
+                                                                     'type': 'object'},
+                                                        'network': {'properties': {},
+                                                                    'type': 'object'},
+                                                        'resource': {'properties': {},
+                                                                     'type': 'object'},
+                                                        'rule_engines': {'items': {'$ref': 'rule_engine.json'},
+                                                                         'minItems': 1,
+                                                                         'type': 'array'}},
+                                         'required': ['authentication',
+                                                      'network',
+                                                      'resource',
+                                                      'rule_engines'],
+                                         'type': 'object'},
+                'schema_name': {'type': 'string'},
+                'schema_validation_base_uri': {'type': 'string'},
+                'schema_version': {'type': 'string'},
+                'server_control_plane_encryption_algorithm': {'type': 'string'},
+                'server_control_plane_encryption_num_hash_rounds': {'type': 'integer'},
+                'server_control_plane_key': {'maxLength': 32,
+                                             'minLength': 32,
+                                             'type': 'string'},
+                'server_control_plane_port': {'type': 'integer'},
+                'server_control_plane_timeout_milliseconds': {'type': 'integer'},
+                'server_port_range_end': {'type': 'integer'},
+                'server_port_range_start': {'type': 'integer'},
+                'zone_auth_scheme': {'type': 'string'},
+                'zone_key': {'maxLength': 49,
+                             'pattern': '^[A-Za-z0-9_]+$',
+                             'type': 'string'},
+                'zone_name': {'maxLength': 63,
+                              'pattern': '^[A-Za-z0-9_\\.]+$',
+                              'type': 'string'},
+                'zone_port': {'type': 'integer'},
+                'zone_user': {'type': 'string'}},
+ 'required': ['advanced_settings',
+              'catalog_provider_hosts',
+              'catalog_service_role',
+              'client_api_allowlist_policy',
+              'controlled_user_connection_list',
+              'default_dir_mode',
+              'default_file_mode',
+              'default_hash_scheme',
+              'environment_variables',
+              'federation',
+              'host_access_control',
+              'host_resolution',
+              'log_level',
+              'match_hash_policy',
+              'negotiation_key',
+              'plugin_configuration',
+              'rule_engine_namespaces',
+              'schema_name',
+              'schema_validation_base_uri',
+              'schema_version',
+              'server_control_plane_encryption_algorithm',
+              'server_control_plane_encryption_num_hash_rounds',
+              'server_control_plane_key',
+              'server_control_plane_port',
+              'server_control_plane_timeout_milliseconds',
+              'server_port_range_end',
+              'server_port_range_start',
+              'zone_auth_scheme',
+              'zone_key',
+              'zone_name',
+              'zone_port',
+              'zone_user'],
+ 'type': 'object'}
+2024-04-27T03:13:00.568Z -    INFO -             json_validation.py:  81 - Validating [/etc/irods/server_config.json]... Success
+2024-04-27T03:13:00.568Z -   DEBUG -               configuration.py: 281 - Attempting to validate /var/lib/irods/version.json against file:///var/lib/irods/configuration_schemas/v4/version.json
+2024-04-27T03:13:00.568Z -   DEBUG -             json_validation.py:  85 - Loading schema from file:///var/lib/irods/configuration_schemas/v4/version.json
+2024-04-27T03:13:00.568Z -   DEBUG -             json_validation.py:  87 - Parsed URL: file:///var/lib/irods/configuration_schemas/v4/version.json
+2024-04-27T03:13:00.569Z -   DEBUG -             json_validation.py:  58 - Validating /var/lib/irods/version.json against json schema:
+2024-04-27T03:13:00.569Z -   DEBUG -             json_validation.py:  59 - {'$id': 'file:///var/lib/irods/configuration_schemas/v4/version.json',
+ '$schema': 'https://json-schema.org/draft/2020-12/schema',
+ 'properties': {'catalog_schema_version': {'type': 'integer'},
+                'commit_id': {'pattern': '^[0-9a-f]{40}$', 'type': 'string'},
+                'installation_time': {'format': 'date-time', 'type': 'string'},
+                'irods_version': {'type': 'string'},
+                'previous_version': {'oneOf': [{'$ref': '#'},
+                                               {'properties': {'catalog_schema_version': {'type': 'integer'},
+                                                               'commit_id': {'pattern': '^[0-9a-f]{40}$',
+                                                                             'type': 'string'},
+                                                               'configuration_schema_version': {'type': 'integer'},
+                                                               'installation_time': {'format': 'date-time',
+                                                                                     'type': 'string'},
+                                                               'irods_version': {'type': 'string'},
+                                                               'previous_version': {'$ref': '#/properties/previous_version/oneOf/1'}},
+                                                'required': ['catalog_schema_version',
+                                                             'commit_id',
+                                                             'configuration_schema_version',
+                                                             'irods_version'],
+                                                'type': 'object'}]},
+                'schema_name': {'type': 'string'},
+                'schema_version': {'type': 'string'}},
+ 'required': ['catalog_schema_version',
+              'commit_id',
+              'irods_version',
+              'schema_name',
+              'schema_version'],
+ 'type': 'object'}
+2024-04-27T03:13:00.570Z -    INFO -             json_validation.py:  81 - Validating [/var/lib/irods/version.json]... Success
+2024-04-27T03:13:00.570Z -   DEBUG -               configuration.py: 281 - Attempting to validate /var/lib/irods/.irods/irods_environment.json against file:///var/lib/irods/configuration_schemas/v4/service_account_environment.json
+2024-04-27T03:13:00.570Z -   DEBUG -             json_validation.py:  85 - Loading schema from file:///var/lib/irods/configuration_schemas/v4/service_account_environment.json
+2024-04-27T03:13:00.570Z -   DEBUG -             json_validation.py:  87 - Parsed URL: file:///var/lib/irods/configuration_schemas/v4/service_account_environment.json
+2024-04-27T03:13:00.570Z -   DEBUG -             json_validation.py:  58 - Validating /var/lib/irods/.irods/irods_environment.json against json schema:
+2024-04-27T03:13:00.571Z -   DEBUG -             json_validation.py:  59 - {'$id': 'file:///var/lib/irods/configuration_schemas/v4/service_account_environment.json',
+ '$schema': 'https://json-schema.org/draft/2020-12/schema',
+ 'allOf': [{'$ref': 'client_environment.json'}],
+ 'properties': {'irods_authentication_file': {'type': 'string'},
+                'irods_authentication_scheme': {'type': 'string'},
+                'irods_client_server_negotiation': {'enum': ['request_server_negotiation',
+                                                             'off']},
+                'irods_client_server_policy': {'enum': ['CS_NEG_REFUSE',
+                                                        'CS_NEG_REQUIRE',
+                                                        'CS_NEG_DONT_CARE']},
+                'irods_connection_pool_refresh_time_in_seconds': {'type': 'integer'},
+                'irods_cwd': {'type': 'string'},
+                'irods_debug': {'type': 'string'},
+                'irods_default_hash_scheme': {'type': 'string'},
+                'irods_default_number_of_transfer_threads': {'type': 'integer'},
+                'irods_default_resource': {'type': 'string'},
+                'irods_encryption_algorithm': {'type': 'string'},
+                'irods_encryption_key_size': {'type': 'integer'},
+                'irods_encryption_num_hash_rounds': {'type': 'integer'},
+                'irods_encryption_salt_size': {'type': 'integer'},
+                'irods_gsi_server_dn': {'type': 'string'},
+                'irods_home': {'type': 'string'},
+                'irods_log_level': {'type': 'integer'},
+                'irods_match_hash_policy': {'type': 'string'},
+                'irods_maximum_size_for_single_buffer_in_megabytes': {'type': 'integer'},
+                'irods_plugins_home': {'type': 'string'},
+                'irods_server_control_plane_encryption_algorithm': {'type': 'string'},
+                'irods_server_control_plane_encryption_num_hash_rounds': {'type': 'integer'},
+                'irods_server_control_plane_key': {'type': 'string'},
+                'irods_server_control_plane_port': {'type': 'integer'},
+                'irods_ssl_ca_certificate_file': {'type': 'string'},
+                'irods_ssl_ca_certificate_path': {'type': 'string'},
+                'irods_ssl_certificate_chain_file': {'type': 'string'},
+                'irods_ssl_certificate_key_file': {'type': 'string'},
+                'irods_ssl_dh_params_file': {'type': 'string'},
+                'irods_ssl_verify_server': {'enum': ['cert',
+                                                     'hostname',
+                                                     'none']},
+                'irods_tcp_keepalive_intvl_in_seconds': {'type': 'integer'},
+                'irods_tcp_keepalive_probes': {'type': 'integer'},
+                'irods_tcp_keepalive_time_in_seconds': {'type': 'integer'},
+                'irods_transfer_buffer_size_for_parallel_transfer_in_megabytes': {'type': 'integer'},
+                'schema_name': {'type': 'string'},
+                'schema_version': {'type': 'string'}},
+ 'required': ['irods_client_server_negotiation',
+              'irods_client_server_policy',
+              'irods_connection_pool_refresh_time_in_seconds',
+              'irods_cwd',
+              'irods_default_hash_scheme',
+              'irods_default_number_of_transfer_threads',
+              'irods_default_resource',
+              'irods_encryption_algorithm',
+              'irods_encryption_key_size',
+              'irods_encryption_num_hash_rounds',
+              'irods_encryption_salt_size',
+              'irods_home',
+              'irods_match_hash_policy',
+              'irods_maximum_size_for_single_buffer_in_megabytes',
+              'irods_server_control_plane_encryption_algorithm',
+              'irods_server_control_plane_encryption_num_hash_rounds',
+              'irods_server_control_plane_key',
+              'irods_server_control_plane_port',
+              'irods_transfer_buffer_size_for_parallel_transfer_in_megabytes',
+              'schema_name',
+              'schema_version'],
+ 'type': 'object'}
+2024-04-27T03:13:00.572Z -    INFO -             json_validation.py:  81 - Validating [/var/lib/irods/.irods/irods_environment.json]... Success
+2024-04-27T03:13:00.573Z -   DEBUG -               configuration.py: 440 - Loading /etc/irods/server_config.json into dictionary
+2024-04-27T03:13:00.574Z -   DEBUG -                  controller.py: 105 - Attempting to bind socket 1247
+2024-04-27T03:13:00.574Z -   DEBUG -                  controller.py: 114 - Socket 1247 bound and released successfully.
+2024-04-27T03:13:00.575Z -   DEBUG -          database_interface.py:  37 - Syncing .odbc.ini file...
+2024-04-27T03:13:00.575Z -   DEBUG -                     execute.py:  52 - Calling ['odbcinst', '-i', '-s', '-h', '-r'] with options:
+{'env': 'HIDDEN', 'shell': False, 'stderr': -1, 'stdin': -1, 'stdout': -1}
+2024-04-27T03:13:00.577Z -   DEBUG -                     execute.py:  37 - Command ['odbcinst', '-i', '-s', '-h', '-r'] returned with code 0.
+stdin:
+  [iRODS Catalog]
+  Driver=MySQL ANSI
+  Description=iRODS catalog
+  Server=404cf78ec9f8
+  Port=3306
+  Database=ICAT
+  FOUND_ROWS=1
+  BIG_PACKETS=1
+  Charset=UTF8
+stdout:
+  odbcinst: Sections and Entries from stdin have been added to ODBC.INI
+2024-04-27T03:13:00.577Z -   DEBUG -                     execute.py:  52 - Calling ['odbcinst', '-i', '-s', '-h', '-r'] with options:
+{'env': 'HIDDEN', 'shell': False, 'stderr': -1, 'stdin': -1, 'stdout': -1}
+2024-04-27T03:13:00.580Z -   DEBUG -                     execute.py:  37 - Command ['odbcinst', '-i', '-s', '-h', '-r'] returned with code 0.
+stdin:
+  [iRODS Catalog]
+  Driver=MySQL ANSI
+  Description=iRODS catalog
+  Server=404cf78ec9f8
+  Port=3306
+  Database=ICAT
+  FOUND_ROWS=1
+  BIG_PACKETS=1
+  Charset=UTF8
+stdout:
+  odbcinst: Sections and Entries from stdin have been added to ODBC.INI
+2024-04-27T03:13:00.584Z -    INFO -          database_interface.py:  40 - Ensuring catalog schema is up-to-date...
+2024-04-27T03:13:00.585Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select option_value from R_GRID_CONFIGURATION where namespace='database' and option_name='schema_version';
+with the following parameters:
+()
+2024-04-27T03:13:00.585Z -   DEBUG -            database_connect.py: 318 - Schema_version in database: 1
+2024-04-27T03:13:00.585Z -   DEBUG -               configuration.py: 440 - Loading /var/lib/irods/version.json into dictionary
+2024-04-27T03:13:00.586Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select option_value from R_GRID_CONFIGURATION where namespace='database' and option_name='schema_version';
+with the following parameters:
+()
+2024-04-27T03:13:00.586Z -   DEBUG -            database_connect.py: 318 - Schema_version in database: 1
+2024-04-27T03:13:00.586Z -    INFO -            database_upgrade.py:  15 - Updating to schema version 2...
+2024-04-27T03:13:00.586Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_SPECIFIC_QUERY (alias, sqlStr, create_ts) values ('listQueryByAliasLike', 'SELECT alias, sqlStr FROM R_SPECIFIC_QUERY WHERE alias LIKE ?', '1388534400');
+with the following parameters:
+()
+2024-04-27T03:13:00.586Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_SPECIFIC_QUERY (alias, sqlStr, create_ts) values ('findQueryByAlias', 'SELECT alias, sqlStr FROM R_SPECIFIC_QUERY WHERE alias = ?', '1388534400');
+with the following parameters:
+()
+2024-04-27T03:13:00.587Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_SPECIFIC_QUERY (alias, sqlStr, create_ts) values ('ilsLACollections', 'SELECT c.parent_coll_name, c.coll_name, c.create_ts, c.modify_ts, c.coll_id, c.coll_owner_name, c.coll_owner_zone, c.coll_type, u.user_name, u.zone_name, a.access_type_id, u.user_id FROM R_COLL_MAIN c JOIN R_OBJT_ACCESS a ON c.coll_id = a.object_id JOIN R_USER_MAIN u ON a.user_id = u.user_id WHERE c.parent_coll_name = ? ORDER BY c.coll_name, u.user_name, a.access_type_id DESC LIMIT ? OFFSET ?', '1388534400');
+with the following parameters:
+()
+2024-04-27T03:13:00.587Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_SPECIFIC_QUERY (alias, sqlStr, create_ts) values ('ilsLADataObjects', 'SELECT s.coll_name, s.data_name, s.create_ts, s.modify_ts, s.data_id, s.data_size, s.data_repl_num, s.data_owner_name, s.data_owner_zone, u.user_name, u.user_id, a.access_type_id, u.user_type_name, u.zone_name FROM ( SELECT c.coll_name, d.data_name, d.create_ts, d.modify_ts, d.data_id, d.data_repl_num, d.data_size, d.data_owner_name, d.data_owner_zone FROM R_COLL_MAIN c JOIN R_DATA_MAIN d ON c.coll_id = d.coll_id WHERE c.coll_name = ? ORDER BY d.data_name) s JOIN R_OBJT_ACCESS a ON s.data_id = a.object_id JOIN R_USER_MAIN u ON a.user_id = u.user_id ORDER BY s.coll_name, s.data_name, u.user_name, a.access_type_id DESC LIMIT ? OFFSET ?', '1388534400');
+with the following parameters:
+()
+2024-04-27T03:13:00.587Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_SPECIFIC_QUERY (alias, sqlStr, create_ts) values ('listSharedCollectionsOwnedByUser', 'SELECT DISTINCT R_COLL_MAIN.coll_id, R_COLL_MAIN.parent_coll_name, R_COLL_MAIN.coll_name, R_COLL_MAIN.coll_owner_name, R_COLL_MAIN.coll_owner_zone, R_META_MAIN.meta_attr_name, R_META_MAIN.meta_attr_value, R_META_MAIN.meta_attr_unit FROM R_COLL_MAIN JOIN R_OBJT_METAMAP ON R_COLL_MAIN.coll_id = R_OBJT_METAMAP.object_id JOIN R_META_MAIN ON R_OBJT_METAMAP.meta_id = R_META_MAIN.meta_id WHERE R_META_MAIN.meta_attr_unit = ''iRODSUserTagging:Share'' AND R_COLL_MAIN.coll_owner_name = ? AND R_COLL_MAIN.coll_owner_zone = ? ORDER BY R_COLL_MAIN.parent_coll_name ASC, R_COLL_MAIN.coll_name ASC', '1388534400');
+with the following parameters:
+()
+2024-04-27T03:13:00.587Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_SPECIFIC_QUERY (alias, sqlStr, create_ts) values ('listSharedCollectionsSharedWithUser', 'SELECT DISTINCT R_COLL_MAIN.coll_id, R_COLL_MAIN.parent_coll_name, R_COLL_MAIN.coll_name, R_COLL_MAIN.coll_owner_name, R_COLL_MAIN.coll_owner_zone, R_META_MAIN.meta_attr_name, R_META_MAIN.meta_attr_value, R_META_MAIN.meta_attr_unit, R_USER_MAIN.user_name, R_USER_MAIN.zone_name, R_OBJT_ACCESS.access_type_id FROM R_COLL_MAIN JOIN R_OBJT_METAMAP ON R_COLL_MAIN.coll_id = R_OBJT_METAMAP.object_id JOIN R_META_MAIN ON R_OBJT_METAMAP.meta_id = R_META_MAIN.meta_id JOIN R_OBJT_ACCESS ON R_COLL_MAIN.coll_id = R_OBJT_ACCESS.object_id JOIN R_USER_MAIN ON R_OBJT_ACCESS.user_id = R_USER_MAIN.user_id WHERE R_META_MAIN.meta_attr_unit = ''iRODSUserTagging:Share'' AND R_USER_MAIN.user_name = ? AND R_USER_MAIN.zone_name = ? AND R_COLL_MAIN.coll_owner_name <> ? ORDER BY R_COLL_MAIN.parent_coll_name ASC, R_COLL_MAIN.coll_name ASC', '1388534400');
+with the following parameters:
+()
+2024-04-27T03:13:00.588Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_SPECIFIC_QUERY (alias, sqlStr, create_ts) values ('listUserACLForDataObjViaGroup', 'SELECT R_USER_MAIN.user_name, R_USER_MAIN.user_id, R_OBJT_ACCESS.access_type_id, R_USER_MAIN.user_type_name, R_USER_MAIN.zone_name, R_COLL_MAIN.coll_name, R_DATA_MAIN.data_name, USER_GROUP_MAIN.user_name, R_DATA_MAIN.data_name, R_COLL_MAIN.coll_name FROM R_USER_MAIN AS USER_GROUP_MAIN JOIN R_USER_GROUP JOIN R_USER_MAIN ON R_USER_GROUP.user_id = R_USER_MAIN.user_id ON USER_GROUP_MAIN.user_id = R_USER_GROUP.group_user_id JOIN R_OBJT_ACCESS ON R_USER_GROUP.group_user_id = R_OBJT_ACCESS.user_id JOIN R_DATA_MAIN JOIN R_COLL_MAIN ON R_DATA_MAIN.coll_id = R_COLL_MAIN.coll_id ON R_OBJT_ACCESS.object_id = R_DATA_MAIN.data_id WHERE  R_COLL_MAIN.coll_name = ? AND R_DATA_MAIN.data_name = ? AND R_USER_MAIN.user_name = ? ORDER BY R_COLL_MAIN.coll_name, R_DATA_MAIN.data_name, R_USER_MAIN.user_name, R_OBJT_ACCESS.access_type_id DESC', '1388534400');
+with the following parameters:
+()
+2024-04-27T03:13:00.588Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_SPECIFIC_QUERY (alias, sqlStr, create_ts) values ('listUserACLForCollectionViaGroup', 'SELECT R_USER_MAIN.user_name, R_USER_MAIN.user_id, R_OBJT_ACCESS.access_type_id, R_USER_MAIN.user_type_name, R_USER_MAIN.zone_name, R_COLL_MAIN.coll_name, USER_GROUP_MAIN.user_name, R_COLL_MAIN.coll_name FROM R_USER_MAIN AS USER_GROUP_MAIN JOIN R_USER_GROUP JOIN R_USER_MAIN ON R_USER_GROUP.user_id = R_USER_MAIN.user_id ON USER_GROUP_MAIN.user_id = R_USER_GROUP.group_user_id JOIN R_OBJT_ACCESS ON R_USER_GROUP.group_user_id = R_OBJT_ACCESS.user_id JOIN R_COLL_MAIN ON R_OBJT_ACCESS.object_id = R_COLL_MAIN.coll_id WHERE R_COLL_MAIN.coll_name = ? AND R_USER_MAIN.user_name = ? ORDER BY R_COLL_MAIN.coll_name, R_USER_MAIN.user_name, R_OBJT_ACCESS.access_type_id DESC', '1388534400');
+with the following parameters:
+()
+2024-04-27T03:13:00.588Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+update R_GRID_CONFIGURATION set option_value = ? where namespace = 'database' and option_name = 'schema_version';
+with the following parameters:
+(2,)
+2024-04-27T03:13:00.589Z -   DEBUG -          database_interface.py:  49 - Committing database changes...
+2024-04-27T03:13:00.589Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select option_value from R_GRID_CONFIGURATION where namespace='database' and option_name='schema_version';
+with the following parameters:
+()
+2024-04-27T03:13:00.590Z -   DEBUG -            database_connect.py: 318 - Schema_version in database: 2
+2024-04-27T03:13:00.590Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select option_value from R_GRID_CONFIGURATION where namespace='database' and option_name='schema_version';
+with the following parameters:
+()
+2024-04-27T03:13:00.590Z -   DEBUG -            database_connect.py: 318 - Schema_version in database: 2
+2024-04-27T03:13:00.590Z -    INFO -            database_upgrade.py:  15 - Updating to schema version 3...
+2024-04-27T03:13:00.591Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_SPECIFIC_QUERY (alias, sqlStr, create_ts) values ('DataObjInCollReCur', 'WITH coll AS (SELECT coll_id, coll_name FROM r_coll_main WHERE R_COLL_MAIN.coll_name = ? OR R_COLL_MAIN.coll_name LIKE ?) SELECT DISTINCT d.data_id, (SELECT coll_name FROM coll WHERE coll.coll_id = d.coll_id) coll_name, d.data_name, d.data_repl_num, d.resc_name, d.data_path, d.resc_hier FROM R_DATA_MAIN d WHERE d.coll_id = ANY(ARRAY(SELECT coll_id FROM coll)) ORDER BY coll_name, d.data_name, d.data_repl_num', '1388534400');
+with the following parameters:
+()
+2024-04-27T03:13:00.591Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+update R_GRID_CONFIGURATION set option_value = ? where namespace = 'database' and option_name = 'schema_version';
+with the following parameters:
+(3,)
+2024-04-27T03:13:00.591Z -   DEBUG -          database_interface.py:  49 - Committing database changes...
+2024-04-27T03:13:00.592Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select option_value from R_GRID_CONFIGURATION where namespace='database' and option_name='schema_version';
+with the following parameters:
+()
+2024-04-27T03:13:00.592Z -   DEBUG -            database_connect.py: 318 - Schema_version in database: 3
+2024-04-27T03:13:00.592Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select option_value from R_GRID_CONFIGURATION where namespace='database' and option_name='schema_version';
+with the following parameters:
+()
+2024-04-27T03:13:00.593Z -   DEBUG -            database_connect.py: 318 - Schema_version in database: 3
+2024-04-27T03:13:00.593Z -    INFO -            database_upgrade.py:  15 - Updating to schema version 4...
+2024-04-27T03:13:00.593Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+create index idx_quota_main1 on R_QUOTA_MAIN (user_id);
+with the following parameters:
+()
+2024-04-27T03:13:00.600Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+delete from R_TOKN_MAIN where token_name = 'domainadmin';
+with the following parameters:
+()
+2024-04-27T03:13:00.601Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+delete from R_TOKN_MAIN where token_name = 'rodscurators';
+with the following parameters:
+()
+2024-04-27T03:13:00.601Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+delete from R_TOKN_MAIN where token_name = 'storageadmin';
+with the following parameters:
+()
+2024-04-27T03:13:00.601Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+delete from R_SPECIFIC_QUERY where alias = 'DataObjInCollReCur';
+with the following parameters:
+()
+2024-04-27T03:13:00.602Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+update R_GRID_CONFIGURATION set option_value = ? where namespace = 'database' and option_name = 'schema_version';
+with the following parameters:
+(4,)
+2024-04-27T03:13:00.602Z -   DEBUG -          database_interface.py:  49 - Committing database changes...
+2024-04-27T03:13:00.603Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select option_value from R_GRID_CONFIGURATION where namespace='database' and option_name='schema_version';
+with the following parameters:
+()
+2024-04-27T03:13:00.603Z -   DEBUG -            database_connect.py: 318 - Schema_version in database: 4
+2024-04-27T03:13:00.603Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select option_value from R_GRID_CONFIGURATION where namespace='database' and option_name='schema_version';
+with the following parameters:
+()
+2024-04-27T03:13:00.603Z -   DEBUG -            database_connect.py: 318 - Schema_version in database: 4
+2024-04-27T03:13:00.603Z -    INFO -            database_upgrade.py:  15 - Updating to schema version 5...
+2024-04-27T03:13:00.603Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+ALTER TABLE R_DATA_MAIN ADD resc_id bigint;
+with the following parameters:
+()
+2024-04-27T03:13:00.613Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+ALTER TABLE R_RESC_MAIN ADD resc_parent_context varchar(4000);
+with the following parameters:
+()
+2024-04-27T03:13:00.620Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+UPDATE R_SPECIFIC_QUERY SET sqlstr='WITH coll AS (SELECT coll_id, coll_name FROM R_COLL_MAIN WHERE R_COLL_MAIN.coll_name = ? OR R_COLL_MAIN.coll_name LIKE ?) SELECT DISTINCT d.data_id, (SELECT coll_name FROM coll WHERE coll.coll_id = d.coll_id) coll_name, d.data_name, d.data_repl_num, d.resc_name, d.data_path, d.resc_id FROM R_DATA_MAIN d WHERE d.coll_id = ANY(ARRAY(SELECT coll_id FROM coll)) ORDER BY coll_name, d.data_name, d.data_repl_num' where alias='DataObjInCollReCur';
+with the following parameters:
+()
+2024-04-27T03:13:00.621Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select resc_id, resc_name from R_RESC_MAIN;
+with the following parameters:
+()
+2024-04-27T03:13:00.621Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+update R_DATA_MAIN set resc_id=? where resc_hier=? or resc_hier like ?
+with the following parameters:
+(10012, 'bundleResc', '%;bundleResc')
+2024-04-27T03:13:00.622Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+update R_DATA_MAIN set resc_id=? where resc_hier=? or resc_hier like ?
+with the following parameters:
+(10013, 'demoResc', '%;demoResc')
+2024-04-27T03:13:00.622Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+update R_RESC_MAIN as rdm, ( select resc_name, resc_id from R_RESC_MAIN ) as am set rdm.resc_parent = am.resc_id where am.resc_name = rdm.resc_parent;
+with the following parameters:
+()
+2024-04-27T03:13:00.622Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select resc_id, resc_children from R_RESC_MAIN where resc_children is not null;
+with the following parameters:
+()
+2024-04-27T03:13:00.623Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+update R_GRID_CONFIGURATION set option_value = ? where namespace = 'database' and option_name = 'schema_version';
+with the following parameters:
+(5,)
+2024-04-27T03:13:00.623Z -   DEBUG -          database_interface.py:  49 - Committing database changes...
+2024-04-27T03:13:00.624Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select option_value from R_GRID_CONFIGURATION where namespace='database' and option_name='schema_version';
+with the following parameters:
+()
+2024-04-27T03:13:00.624Z -   DEBUG -            database_connect.py: 318 - Schema_version in database: 5
+2024-04-27T03:13:00.624Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select option_value from R_GRID_CONFIGURATION where namespace='database' and option_name='schema_version';
+with the following parameters:
+()
+2024-04-27T03:13:00.625Z -   DEBUG -            database_connect.py: 318 - Schema_version in database: 5
+2024-04-27T03:13:00.625Z -    INFO -            database_upgrade.py:  15 - Updating to schema version 6...
+2024-04-27T03:13:00.625Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+create index idx_data_main7 on R_DATA_MAIN (resc_id);
+with the following parameters:
+()
+2024-04-27T03:13:00.635Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+create index idx_data_main8 on R_DATA_MAIN (data_is_dirty);
+with the following parameters:
+()
+2024-04-27T03:13:00.646Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+update R_GRID_CONFIGURATION set option_value = ? where namespace = 'database' and option_name = 'schema_version';
+with the following parameters:
+(6,)
+2024-04-27T03:13:00.646Z -   DEBUG -          database_interface.py:  49 - Committing database changes...
+2024-04-27T03:13:00.647Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select option_value from R_GRID_CONFIGURATION where namespace='database' and option_name='schema_version';
+with the following parameters:
+()
+2024-04-27T03:13:00.647Z -   DEBUG -            database_connect.py: 318 - Schema_version in database: 6
+2024-04-27T03:13:00.647Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select option_value from R_GRID_CONFIGURATION where namespace='database' and option_name='schema_version';
+with the following parameters:
+()
+2024-04-27T03:13:00.648Z -   DEBUG -            database_connect.py: 318 - Schema_version in database: 6
+2024-04-27T03:13:00.648Z -    INFO -            database_upgrade.py:  15 - Updating to schema version 7...
+2024-04-27T03:13:00.648Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select distinct group_user_id from R_USER_GROUP where group_user_id not in (select distinct group_user_id from R_USER_GROUP where group_user_id = user_id);
+with the following parameters:
+()
+2024-04-27T03:13:00.648Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_SPECIFIC_QUERY (alias, sqlStr, create_ts) values ('listGroupsForUser', 'select group_user_id, user_name from R_USER_GROUP ug inner join R_USER_MAIN u on ug.group_user_id = u.user_id where user_type_name = ''rodsgroup'' and ug.user_id = (select user_id from R_USER_MAIN where user_name = ? and user_type_name != ''rodsgroup'')', '1580297960');
+with the following parameters:
+()
+2024-04-27T03:13:00.648Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+update R_GRID_CONFIGURATION set option_value = ? where namespace = 'database' and option_name = 'schema_version';
+with the following parameters:
+(7,)
+2024-04-27T03:13:00.649Z -   DEBUG -          database_interface.py:  49 - Committing database changes...
+2024-04-27T03:13:00.649Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select option_value from R_GRID_CONFIGURATION where namespace='database' and option_name='schema_version';
+with the following parameters:
+()
+2024-04-27T03:13:00.650Z -   DEBUG -            database_connect.py: 318 - Schema_version in database: 7
+2024-04-27T03:13:00.650Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select option_value from R_GRID_CONFIGURATION where namespace='database' and option_name='schema_version';
+with the following parameters:
+()
+2024-04-27T03:13:00.650Z -   DEBUG -            database_connect.py: 318 - Schema_version in database: 7
+2024-04-27T03:13:00.650Z -    INFO -            database_upgrade.py:  15 - Updating to schema version 8...
+2024-04-27T03:13:00.650Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+alter table R_RULE_EXEC add column exe_context longtext;
+with the following parameters:
+()
+2024-04-27T03:13:00.657Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+update R_GRID_CONFIGURATION set option_value = ? where namespace = 'database' and option_name = 'schema_version';
+with the following parameters:
+(8,)
+2024-04-27T03:13:00.657Z -   DEBUG -          database_interface.py:  49 - Committing database changes...
+2024-04-27T03:13:00.660Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select option_value from R_GRID_CONFIGURATION where namespace='database' and option_name='schema_version';
+with the following parameters:
+()
+2024-04-27T03:13:00.660Z -   DEBUG -            database_connect.py: 318 - Schema_version in database: 8
+2024-04-27T03:13:00.660Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select option_value from R_GRID_CONFIGURATION where namespace='database' and option_name='schema_version';
+with the following parameters:
+()
+2024-04-27T03:13:00.660Z -   DEBUG -            database_connect.py: 318 - Schema_version in database: 8
+2024-04-27T03:13:00.660Z -    INFO -            database_upgrade.py:  15 - Updating to schema version 9...
+2024-04-27T03:13:00.660Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_GRID_CONFIGURATION values ('delay_server','leader',?);
+with the following parameters:
+('9cc87577acf8',)
+2024-04-27T03:13:00.661Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_GRID_CONFIGURATION values ('delay_server','successor','');
+with the following parameters:
+()
+2024-04-27T03:13:00.661Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+update R_TOKN_MAIN set token_name = 'delete_object' where token_name = 'delete object';
+with the following parameters:
+()
+2024-04-27T03:13:00.661Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+update R_TOKN_MAIN set token_name = 'modify_object' where token_name = 'modify object';
+with the following parameters:
+()
+2024-04-27T03:13:00.661Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+update R_TOKN_MAIN set token_name = 'create_object' where token_name = 'create object';
+with the following parameters:
+()
+2024-04-27T03:13:00.662Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+update R_TOKN_MAIN set token_name = 'delete_metadata' where token_name = 'delete metadata';
+with the following parameters:
+()
+2024-04-27T03:13:00.662Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+update R_TOKN_MAIN set token_name = 'modify_metadata' where token_name = 'modify metadata';
+with the following parameters:
+()
+2024-04-27T03:13:00.662Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+update R_TOKN_MAIN set token_name = 'create_metadata' where token_name = 'create metadata';
+with the following parameters:
+()
+2024-04-27T03:13:00.662Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+update R_TOKN_MAIN set token_name = 'read_object' where token_name = 'read object';
+with the following parameters:
+()
+2024-04-27T03:13:00.663Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+update R_TOKN_MAIN set token_name = 'read_metadata' where token_name = 'read metadata';
+with the following parameters:
+()
+2024-04-27T03:13:00.663Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+update R_GRID_CONFIGURATION set option_value = ? where namespace = 'database' and option_name = 'schema_version';
+with the following parameters:
+(9,)
+2024-04-27T03:13:00.663Z -   DEBUG -          database_interface.py:  49 - Committing database changes...
+2024-04-27T03:13:00.664Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select option_value from R_GRID_CONFIGURATION where namespace='database' and option_name='schema_version';
+with the following parameters:
+()
+2024-04-27T03:13:00.664Z -   DEBUG -            database_connect.py: 318 - Schema_version in database: 9
+2024-04-27T03:13:00.664Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select option_value from R_GRID_CONFIGURATION where namespace='database' and option_name='schema_version';
+with the following parameters:
+()
+2024-04-27T03:13:00.664Z -   DEBUG -            database_connect.py: 318 - Schema_version in database: 9
+2024-04-27T03:13:00.664Z -    INFO -            database_upgrade.py:  15 - Updating to schema version 10...
+2024-04-27T03:13:00.665Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select alias from R_SPECIFIC_QUERY where alias = 'DataObjInCollReCur';
+with the following parameters:
+()
+2024-04-27T03:13:00.665Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_SPECIFIC_QUERY (alias, sqlStr, create_ts) values ('DataObjInCollReCur', 'with COLL as (select coll_id, coll_name from R_COLL_MAIN where R_COLL_MAIN.coll_name = ? or R_COLL_MAIN.coll_name like ?) select distinct d.data_id, (select coll_name from COLL where COLL.coll_id = d.coll_id) coll_name, d.data_name, d.data_repl_num, d.resc_name, d.data_path, d.resc_id from R_DATA_MAIN d where d.coll_id = any(select coll_id from COLL) order by coll_name, d.data_name, d.data_repl_num', '1580297960');
+with the following parameters:
+()
+2024-04-27T03:13:00.665Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+update R_GRID_CONFIGURATION set option_value = ? where namespace = 'database' and option_name = 'schema_version';
+with the following parameters:
+(10,)
+2024-04-27T03:13:00.665Z -   DEBUG -          database_interface.py:  49 - Committing database changes...
+2024-04-27T03:13:00.666Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select option_value from R_GRID_CONFIGURATION where namespace='database' and option_name='schema_version';
+with the following parameters:
+()
+2024-04-27T03:13:00.666Z -   DEBUG -            database_connect.py: 318 - Schema_version in database: 10
+2024-04-27T03:13:00.666Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select option_value from R_GRID_CONFIGURATION where namespace='database' and option_name='schema_version';
+with the following parameters:
+()
+2024-04-27T03:13:00.667Z -   DEBUG -            database_connect.py: 318 - Schema_version in database: 10
+2024-04-27T03:13:00.667Z -    INFO -            database_upgrade.py:  15 - Updating to schema version 11...
+2024-04-27T03:13:00.667Z -   DEBUG -                     execute.py:  52 - Calling ['/usr/bin/mysql', '--defaults-file=/tmp/tmp9lu3ehi8', 'ICAT'] with options:
+{'shell': False,
+ 'stderr': -1,
+ 'stdin': <_io.TextIOWrapper name='/var/lib/irods/packaging/sql/mysql_functions.sql' mode='r' encoding='UTF-8'>,
+ 'stdout': -1}
+2024-04-27T03:13:00.678Z -   DEBUG -                     execute.py:  37 - Command ['/usr/bin/mysql', '--defaults-file=/tmp/tmp9lu3ehi8', 'ICAT'] returned with code 0.
+2024-04-27T03:13:00.678Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+alter table R_RESC_MAIN add column modify_ts_millis varchar(3) default '000';
+with the following parameters:
+()
+2024-04-27T03:13:00.685Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_GRID_CONFIGURATION (namespace, option_name, option_value) values ('authentication','password_extend_lifetime','1');
+with the following parameters:
+()
+2024-04-27T03:13:00.686Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_GRID_CONFIGURATION (namespace, option_name, option_value) values ('authentication','password_min_time','121');
+with the following parameters:
+()
+2024-04-27T03:13:00.686Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+insert into R_GRID_CONFIGURATION (namespace, option_name, option_value) values ('authentication','password_max_time','1209600');
+with the following parameters:
+()
+2024-04-27T03:13:00.686Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+update R_GRID_CONFIGURATION set option_value = ? where namespace = 'database' and option_name = 'schema_version';
+with the following parameters:
+(11,)
+2024-04-27T03:13:00.687Z -   DEBUG -          database_interface.py:  49 - Committing database changes...
+2024-04-27T03:13:00.687Z -   DEBUG -            database_connect.py: 247 - Executing SQL statement:
+select option_value from R_GRID_CONFIGURATION where namespace='database' and option_name='schema_version';
+with the following parameters:
+()
+2024-04-27T03:13:00.688Z -   DEBUG -            database_connect.py: 318 - Schema_version in database: 11
+2024-04-27T03:13:00.688Z -    INFO -          database_interface.py:  44 - Catalog schema is up-to-date.
+2024-04-27T03:13:00.688Z -    INFO -                  controller.py: 137 - Starting iRODS server ...
+2024-04-27T03:13:00.688Z -   DEBUG -                     execute.py:  52 - Calling ['/usr/sbin/irodsServer'] with options:
+{'cwd': '/usr/sbin',
+ 'env': 'HIDDEN',
+ 'shell': False,
+ 'stderr': -1,
+ 'stdout': -1}
+2024-04-27T03:13:00.747Z -   DEBUG -                     execute.py:  37 - Command ['/usr/sbin/irodsServer'] returned with code 0.
+2024-04-27T03:13:00.748Z -   DEBUG -                  controller.py: 150 - Attempting to connect to iRODS server on port 1247. Attempt #1
+2024-04-27T03:13:01.749Z -   DEBUG -                  controller.py: 150 - Attempting to connect to iRODS server on port 1247. Attempt #2
+2024-04-27T03:13:01.749Z -   DEBUG -                  controller.py: 155 - Successfully connected to port 1247.
+2024-04-27T03:13:01.750Z -    INFO -                  controller.py: 168 - Success
+2024-04-27T03:13:01.750Z -    INFO -                 setup_irods.py: 180 - 
++---------------------------+
+| Running Post-Install Test |
++---------------------------+
+
+2024-04-27T03:13:01.751Z -   DEBUG -                     execute.py:  52 - Calling ['/usr/sbin/irodsTestPutGet'] with options:
+{'shell': False, 'stderr': -1, 'stdout': -1}
+2024-04-27T03:13:02.077Z -   DEBUG -                     execute.py:  37 - Command /usr/sbin/irodsTestPutGet returned with code 0.
+2024-04-27T03:13:02.077Z -    INFO -                 setup_irods.py: 185 - Success
+2024-04-27T03:13:02.077Z -    INFO -                 setup_irods.py: 158 - 
++-------------------------+
+| Log Configuration Notes |
++-------------------------+
+
+2024-04-27T03:13:02.077Z -    INFO -                 setup_irods.py: 159 - iRODS uses syslog for logging. If your OS has a running syslog service, messages
+will appear in the system log file (normally located at /var/log/syslog).
+
+See the following for more information about configuring an iRODS-specific log file:
+
+  https://docs.irods.org/4.3.2/system_overview/troubleshooting/
+2024-04-27T03:13:02.077Z -    INFO -                 setup_irods.py: 164 - 
++-------------------+
+| Stopping iRODS... |
++-------------------+
+
+2024-04-27T03:13:02.077Z -   DEBUG -                  controller.py: 193 - Calling stop on IrodsController
+2024-04-27T03:13:02.077Z -    INFO -                  controller.py: 194 - Stopping iRODS server...
+2024-04-27T03:13:03.588Z -    INFO -                  controller.py: 228 - Success
+2024-04-27T03:13:03.588Z -    INFO -                 setup_irods.py: 167 - 
++---------------------------------------------+
+| iRODS is configured and ready to be started |
++---------------------------------------------+
+

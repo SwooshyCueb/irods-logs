@@ -1,0 +1,151 @@
+2024-04-26 23:14:27,801 - [ub22msql8s3_irods-catalog-provider_4]: test failed [[  43.2696]s] [test_irods_resource_plugin_s3_minio.Test_S3_NoCache_MPU_Disabled.test_irepl_over_existing_second_replica__ticket_1705]
+2024-04-26 23:14:27,801 - [ub22msql8s3_irods-catalog-provider_4]: tests that failed [[('test_irods_resource_plugin_s3_minio.Test_S3_NoCache_MPU_Disabled.test_irepl_over_existing_second_replica__ticket_1705', 43.26961851119995)]]
+2024-04-26 23:14:27,801 - [ub22msql8s3_irods-catalog-provider_4]: some tests failed
+2024-04-26 23:14:29,753 - [ub22msql8s3_irods-catalog-provider_6]: test failed [[  45.2209]s] [test_irods_resource_plugin_s3_minio.Test_S3_NoCache_Decoupled.test_irepl_over_existing_third_replica__ticket_1705]
+2024-04-26 23:14:29,754 - [ub22msql8s3_irods-catalog-provider_6]: tests that failed [[('test_irods_resource_plugin_s3_minio.Test_S3_NoCache_Decoupled.test_irepl_over_existing_third_replica__ticket_1705', 45.220874547958374)]]
+2024-04-26 23:14:29,754 - [ub22msql8s3_irods-catalog-provider_6]: some tests failed
+2024-04-26 23:14:30,242 - [ub22msql8s3_irods-catalog-provider_1]: test failed [[  45.7119]s] [test_irods_resource_plugin_s3_minio.Test_S3_NoCache_V4.test_irepl_over_existing_second_replica__ticket_1705]
+2024-04-26 23:14:30,242 - [ub22msql8s3_irods-catalog-provider_1]: tests that failed [[('test_irods_resource_plugin_s3_minio.Test_S3_NoCache_V4.test_irepl_over_existing_second_replica__ticket_1705', 45.71193337440491)]]
+2024-04-26 23:14:30,243 - [ub22msql8s3_irods-catalog-provider_1]: some tests failed
+2024-04-26 23:14:34,290 - [ub22msql8s3_irods-catalog-provider_12]: test failed [[  49.7473]s] [test_irods_resource_plugin_s3_minio.Test_S3_NoCache_EU_Central_1.test_irepl_over_existing_third_replica__ticket_1705]
+2024-04-26 23:14:34,291 - [ub22msql8s3_irods-catalog-provider_12]: tests that failed [[('test_irods_resource_plugin_s3_minio.Test_S3_NoCache_EU_Central_1.test_irepl_over_existing_third_replica__ticket_1705', 49.747270345687866)]]
+2024-04-26 23:14:34,291 - [ub22msql8s3_irods-catalog-provider_12]: some tests failed
+2024-04-26 23:14:42,516 - [ub22msql8s3_irods-catalog-provider_11]: test failed [[  57.9768]s] [test_irods_resource_plugin_s3_minio.Test_Compound_With_S3_Resource.test_irepl_over_existing_third_replica__ticket_1705]
+2024-04-26 23:14:42,516 - [ub22msql8s3_irods-catalog-provider_11]: tests that failed [[('test_irods_resource_plugin_s3_minio.Test_Compound_With_S3_Resource.test_irepl_over_existing_third_replica__ticket_1705', 57.976776123046875)]]
+2024-04-26 23:14:42,516 - [ub22msql8s3_irods-catalog-provider_11]: some tests failed
+2024-04-26 23:14:42,593 - [ub22msql8s3_irods-catalog-provider_3]: test failed [[  58.0621]s] [test_irods_resource_plugin_s3_minio.Test_S3_NoCache_Decoupled.test_irepl_over_existing_second_replica__ticket_1705]
+2024-04-26 23:14:42,593 - [ub22msql8s3_irods-catalog-provider_3]: tests that failed [[('test_irods_resource_plugin_s3_minio.Test_S3_NoCache_Decoupled.test_irepl_over_existing_second_replica__ticket_1705', 58.06210136413574)]]
+2024-04-26 23:14:42,594 - [ub22msql8s3_irods-catalog-provider_3]: some tests failed
+2024-04-26 23:14:44,038 - [ub22msql8s3_irods-catalog-provider_7]: test failed [[  59.5046]s] [test_irods_resource_plugin_s3_minio.Test_S3_NoCache_MPU_Disabled.test_irepl_over_existing_third_replica__ticket_1705]
+2024-04-26 23:14:44,038 - [ub22msql8s3_irods-catalog-provider_7]: tests that failed [[('test_irods_resource_plugin_s3_minio.Test_S3_NoCache_MPU_Disabled.test_irepl_over_existing_third_replica__ticket_1705', 59.50455617904663)]]
+2024-04-26 23:14:44,039 - [ub22msql8s3_irods-catalog-provider_7]: some tests failed
+2024-04-26 23:14:45,519 - [ub22msql8s3_irods-catalog-provider_5]: test failed [[  60.9875]s] [test_irods_resource_plugin_s3_minio.Test_Compound_With_S3_Resource.test_irepl_over_existing_second_replica__ticket_1705]
+2024-04-26 23:14:45,519 - [ub22msql8s3_irods-catalog-provider_5]: tests that failed [[('test_irods_resource_plugin_s3_minio.Test_Compound_With_S3_Resource.test_irepl_over_existing_second_replica__ticket_1705', 60.98745059967041)]]
+2024-04-26 23:14:45,520 - [ub22msql8s3_irods-catalog-provider_5]: some tests failed
+2024-04-26 23:14:52,294 - [ub22msql8s3_irods-catalog-provider_2]: test failed [[  67.7633]s] [test_irods_resource_plugin_s3_minio.Test_S3_NoCache_V4.test_irepl_over_existing_third_replica__ticket_1705]
+2024-04-26 23:14:52,294 - [ub22msql8s3_irods-catalog-provider_2]: tests that failed [[('test_irods_resource_plugin_s3_minio.Test_S3_NoCache_V4.test_irepl_over_existing_third_replica__ticket_1705', 67.76331305503845)]]
+2024-04-26 23:14:52,294 - [ub22msql8s3_irods-catalog-provider_2]: some tests failed
+2024-04-26 23:14:54,519 - [ub22msql8s3_irods-catalog-provider_9]: test failed [[  69.9821]s] [test_irods_resource_plugin_s3_minio.Test_S3_NoCache_EU_Central_1.test_irepl_over_existing_second_replica__ticket_1705]
+2024-04-26 23:14:54,519 - [ub22msql8s3_irods-catalog-provider_9]: tests that failed [[('test_irods_resource_plugin_s3_minio.Test_S3_NoCache_EU_Central_1.test_irepl_over_existing_second_replica__ticket_1705', 69.98214387893677)]]
+2024-04-26 23:14:54,519 - [ub22msql8s3_irods-catalog-provider_9]: some tests failed
+2024-04-26 23:14:55,183 - [ub22msql8s3_irods-catalog-provider_8]: test failed [[  70.6477]s] [test_irods_resource_plugin_s3_minio.Test_Compound_With_S3_Resource_EU_Central_1.test_irepl_over_existing_second_replica__ticket_1705]
+2024-04-26 23:14:55,183 - [ub22msql8s3_irods-catalog-provider_8]: tests that failed [[('test_irods_resource_plugin_s3_minio.Test_Compound_With_S3_Resource_EU_Central_1.test_irepl_over_existing_second_replica__ticket_1705', 70.64768958091736)]]
+2024-04-26 23:14:55,183 - [ub22msql8s3_irods-catalog-provider_8]: some tests failed
+2024-04-26 23:15:04,222 - [ub22msql8s3_irods-catalog-provider_10]: test failed [[  79.6842]s] [test_irods_resource_plugin_s3_minio.Test_Compound_With_S3_Resource_EU_Central_1.test_irepl_over_existing_third_replica__ticket_1705]
+2024-04-26 23:15:04,222 - [ub22msql8s3_irods-catalog-provider_10]: tests that failed [[('test_irods_resource_plugin_s3_minio.Test_Compound_With_S3_Resource_EU_Central_1.test_irepl_over_existing_third_replica__ticket_1705', 79.6841881275177)]]
+2024-04-26 23:15:04,222 - [ub22msql8s3_irods-catalog-provider_10]: some tests failed
+2024-04-26 23:15:04,225 - ==== begin test run results ====
+-----
+results for [ub22msql8s3_irods-catalog-provider_1]
+	passed tests:
+	skipped tests:
+	failed tests:
+		[[  45.7119]s]	[test_irods_resource_plugin_s3_minio.Test_S3_NoCache_V4.test_irepl_over_existing_second_replica__ticket_1705]
+	return code:[1]
+	time elapsed: [    45.71]seconds ([   0]hours [   0.7619]minutes)
+-----
+-----
+results for [ub22msql8s3_irods-catalog-provider_2]
+	passed tests:
+	skipped tests:
+	failed tests:
+		[[  67.7633]s]	[test_irods_resource_plugin_s3_minio.Test_S3_NoCache_V4.test_irepl_over_existing_third_replica__ticket_1705]
+	return code:[1]
+	time elapsed: [    67.76]seconds ([   0]hours [    1.129]minutes)
+-----
+-----
+results for [ub22msql8s3_irods-catalog-provider_3]
+	passed tests:
+	skipped tests:
+	failed tests:
+		[[  58.0621]s]	[test_irods_resource_plugin_s3_minio.Test_S3_NoCache_Decoupled.test_irepl_over_existing_second_replica__ticket_1705]
+	return code:[1]
+	time elapsed: [    58.06]seconds ([   0]hours [   0.9677]minutes)
+-----
+-----
+results for [ub22msql8s3_irods-catalog-provider_4]
+	passed tests:
+	skipped tests:
+	failed tests:
+		[[  43.2696]s]	[test_irods_resource_plugin_s3_minio.Test_S3_NoCache_MPU_Disabled.test_irepl_over_existing_second_replica__ticket_1705]
+	return code:[1]
+	time elapsed: [    43.27]seconds ([   0]hours [   0.7212]minutes)
+-----
+-----
+results for [ub22msql8s3_irods-catalog-provider_5]
+	passed tests:
+	skipped tests:
+	failed tests:
+		[[  60.9875]s]	[test_irods_resource_plugin_s3_minio.Test_Compound_With_S3_Resource.test_irepl_over_existing_second_replica__ticket_1705]
+	return code:[1]
+	time elapsed: [    60.99]seconds ([   0]hours [    1.016]minutes)
+-----
+-----
+results for [ub22msql8s3_irods-catalog-provider_6]
+	passed tests:
+	skipped tests:
+	failed tests:
+		[[  45.2209]s]	[test_irods_resource_plugin_s3_minio.Test_S3_NoCache_Decoupled.test_irepl_over_existing_third_replica__ticket_1705]
+	return code:[1]
+	time elapsed: [    45.22]seconds ([   0]hours [   0.7537]minutes)
+-----
+-----
+results for [ub22msql8s3_irods-catalog-provider_7]
+	passed tests:
+	skipped tests:
+	failed tests:
+		[[  59.5046]s]	[test_irods_resource_plugin_s3_minio.Test_S3_NoCache_MPU_Disabled.test_irepl_over_existing_third_replica__ticket_1705]
+	return code:[1]
+	time elapsed: [     59.5]seconds ([   0]hours [   0.9917]minutes)
+-----
+-----
+results for [ub22msql8s3_irods-catalog-provider_8]
+	passed tests:
+	skipped tests:
+	failed tests:
+		[[  70.6477]s]	[test_irods_resource_plugin_s3_minio.Test_Compound_With_S3_Resource_EU_Central_1.test_irepl_over_existing_second_replica__ticket_1705]
+	return code:[1]
+	time elapsed: [    70.65]seconds ([   0]hours [    1.177]minutes)
+-----
+-----
+results for [ub22msql8s3_irods-catalog-provider_9]
+	passed tests:
+	skipped tests:
+	failed tests:
+		[[  69.9821]s]	[test_irods_resource_plugin_s3_minio.Test_S3_NoCache_EU_Central_1.test_irepl_over_existing_second_replica__ticket_1705]
+	return code:[1]
+	time elapsed: [    69.98]seconds ([   0]hours [    1.166]minutes)
+-----
+-----
+results for [ub22msql8s3_irods-catalog-provider_10]
+	passed tests:
+	skipped tests:
+	failed tests:
+		[[  79.6842]s]	[test_irods_resource_plugin_s3_minio.Test_Compound_With_S3_Resource_EU_Central_1.test_irepl_over_existing_third_replica__ticket_1705]
+	return code:[1]
+	time elapsed: [    79.68]seconds ([   0]hours [    1.328]minutes)
+-----
+-----
+results for [ub22msql8s3_irods-catalog-provider_11]
+	passed tests:
+	skipped tests:
+	failed tests:
+		[[  57.9768]s]	[test_irods_resource_plugin_s3_minio.Test_Compound_With_S3_Resource.test_irepl_over_existing_third_replica__ticket_1705]
+	return code:[1]
+	time elapsed: [    57.98]seconds ([   0]hours [   0.9663]minutes)
+-----
+-----
+results for [ub22msql8s3_irods-catalog-provider_12]
+	passed tests:
+	skipped tests:
+	failed tests:
+		[[  49.7473]s]	[test_irods_resource_plugin_s3_minio.Test_S3_NoCache_EU_Central_1.test_irepl_over_existing_third_replica__ticket_1705]
+	return code:[1]
+	time elapsed: [    49.75]seconds ([   0]hours [   0.8291]minutes)
+-----
+List of failed tests:
+	test_irods_resource_plugin_s3_minio.Test_S3_NoCache_V4.test_irepl_over_existing_second_replica__ticket_1705 test_irods_resource_plugin_s3_minio.Test_S3_NoCache_V4.test_irepl_over_existing_third_replica__ticket_1705 test_irods_resource_plugin_s3_minio.Test_S3_NoCache_Decoupled.test_irepl_over_existing_second_replica__ticket_1705 test_irods_resource_plugin_s3_minio.Test_S3_NoCache_MPU_Disabled.test_irepl_over_existing_second_replica__ticket_1705 test_irods_resource_plugin_s3_minio.Test_Compound_With_S3_Resource.test_irepl_over_existing_second_replica__ticket_1705 test_irods_resource_plugin_s3_minio.Test_S3_NoCache_Decoupled.test_irepl_over_existing_third_replica__ticket_1705 test_irods_resource_plugin_s3_minio.Test_S3_NoCache_MPU_Disabled.test_irepl_over_existing_third_replica__ticket_1705 test_irods_resource_plugin_s3_minio.Test_Compound_With_S3_Resource_EU_Central_1.test_irepl_over_existing_second_replica__ticket_1705 test_irods_resource_plugin_s3_minio.Test_S3_NoCache_EU_Central_1.test_irepl_over_existing_second_replica__ticket_1705 test_irods_resource_plugin_s3_minio.Test_Compound_With_S3_Resource_EU_Central_1.test_irepl_over_existing_third_replica__ticket_1705 test_irods_resource_plugin_s3_minio.Test_Compound_With_S3_Resource.test_irepl_over_existing_third_replica__ticket_1705 test_irods_resource_plugin_s3_minio.Test_S3_NoCache_EU_Central_1.test_irepl_over_existing_third_replica__ticket_1705
+Return code:[1]
+time elapsed: [  79.6944]seconds ([   0]hours [ 1.3282]minutes)
+==== end of test run results ====
+
